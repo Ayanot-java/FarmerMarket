@@ -7,7 +7,7 @@ public class Test {
 	public static void main(String[] args) {
 		String kukusiki = "kukusiki";
 		System.out.println("Privet Okun!");
-        System.out.println("raz-raz-raz");
+        System.out.println("raz-raz");
 
     }
 }
