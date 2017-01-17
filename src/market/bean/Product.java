@@ -1,12 +1,27 @@
 package market.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Created by Tane4ka on 17.01.2017.
  */
+@Entity
+@Table (name = "product")
 public class Product {
+    @Id
+    @Column (name = "id")
     private int id;
+
+    @Column (name = "name")
     private String name;
+
+    @Column (name = "type")
     private String type;
+
+    @Column (name = "img")
     private String img;
 
     public int getId() {
