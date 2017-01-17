@@ -9,6 +9,6 @@ public class Test {
 		System.out.println("Privet Okun!");
         System.out.println("raz-raz");
 		System.out.println("Push me");
-
-    }
+		System.out.println("And then just touch me");
+	}
 }
