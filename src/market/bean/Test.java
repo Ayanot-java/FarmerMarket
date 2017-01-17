@@ -10,6 +10,7 @@ public class Test {
 
     String kukusiki = "kukusiki";
 
-        System.out.println("Privet Okun!");
+        System.out.println("Privet, Okun!");
+		System.out.println("raz-raz-raz");
 }
 }
