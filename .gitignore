@@ -4,6 +4,13 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
+.classpath
+.gitattributes
+.gitignore
+.project
+.settings/
+build/
+.git/
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
