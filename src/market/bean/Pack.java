@@ -8,6 +8,9 @@ import javax.persistence.*;
 @Entity
 @Table(name= "pack")
 public class Pack {
+<<<<<<< HEAD
+	String test = "fest";
+=======
 
     @Id
     @GeneratedValue
@@ -40,4 +43,5 @@ public class Pack {
         this.name = name;
     }
 
+>>>>>>> origin/master
 }
