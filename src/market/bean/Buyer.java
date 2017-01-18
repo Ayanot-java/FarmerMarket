@@ -1,10 +1,16 @@
 package market.bean;
 
+//
 public class Buyer {
-	
-	String mmm = "Hello";
-	
-	public void test92() {
-		System.out.println("allo");
-	}
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }
