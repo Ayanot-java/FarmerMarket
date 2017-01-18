@@ -1,6 +1,7 @@
 package market.bean;
 
 //Privet Anya
+//Privet, Sasha!
 public class Buyer {
 
     private String name;
