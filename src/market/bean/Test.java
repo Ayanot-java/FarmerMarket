@@ -11,6 +11,7 @@ public class Test {
 		System.out.println("Push me");
 		System.out.println("Pupuppupupupush me");
 		System.out.println("atata");
+		//From Eclipse
 
     }
 }
