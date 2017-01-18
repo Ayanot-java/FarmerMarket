@@ -11,13 +11,14 @@
 
         <!-- Assume 'hr' is the database name -->
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost/market
+        <!--    jdbc:mysql://localhost/market  -->
+            DB URL
         </property>
         <property name="hibernate.connection.username">
-            Helen
+            UserName
         </property>
         <property name="hibernate.connection.password">
-            1357913579
+            Password
         </property>
 
         <!-- List of XML mapping files -->
