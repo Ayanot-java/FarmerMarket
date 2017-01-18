@@ -17,7 +17,8 @@ local.properties
 .loadpath
 .idea
 idea/
-
+pom.xml
+hibernate.cfg.xml
 
 # External tool builders
 .externalToolBuilders/
