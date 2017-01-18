@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name="hibernate.connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+
+        <!-- Assume 'hr' is the database name -->
+        <property name="hibernate.connection.url">
+        <!--    jdbc:mysql://localhost/market  -->
+            DB URL
+        </property>
+        <property name="hibernate.connection.username">
+            UserName
+        </property>
+        <property name="hibernate.connection.password">
+            Password
+        </property>
+
+        <!-- List of XML mapping files -->
+        <!--mapping resource="Employee.hbm.xml"/-->
+
+        <!--list of classes-->
+        <property name = "show_sql">false</property>
+        <!--выводит в консоль всю работу SQL. чтобы скрыть - либо стереть совсем, либо исправить на false-->
+
+
+        <mapping class = "market.bean.Buyer"/>
+        <mapping class = "market.bean.Farmer"/>
+        <mapping class = "market.bean.Pack"/>
+        <mapping class = "market.bean.Product"/>
+        <mapping class = "market.bean.Purchase"/>
+        <mapping class = "market.bean.PurchaseDetails"/>
+        <mapping class = "market.bean.SupplyDetails"/>
+        <mapping class = ""/>
+
+    </session-factory>
+</hibernate-configuration>
