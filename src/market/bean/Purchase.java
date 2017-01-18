@@ -1,6 +1,7 @@
 package market.bean;
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.*;
+
 
 /**
  * Created by Helen on 17.01.2017.
@@ -22,6 +23,12 @@ public class Purchase {
     private Date purchaseDate;
 
     public Purchase() {
+        this.purchaseDate = new Date();
+    }
+
+    public Purchase(Buyer buyer) {
+        this.purchaseDate = new Date();
+        this.buyer = buyer;
     }
 
     public Purchase(Buyer buyer, Date purchaseDate) {
