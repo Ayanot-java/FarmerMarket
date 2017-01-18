@@ -1,5 +1,6 @@
 package market.bean;
 
+//
 public class Buyer {
 
     private String name;
