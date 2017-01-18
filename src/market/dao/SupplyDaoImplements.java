@@ -1,7 +1,7 @@
-package dao;
+package market.dao;
 
-import bean.Farmer;
-import bean.Supply;
+import market.bean.Farmer;
+import market.bean.Supply;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by Tane4ka on 18.01.2017.
  */
-public class supplyDaoImplements implements supplyDao{
+public class SupplyDaoImplements implements SupplyDao {
 
     @Override
     public void create(Farmer farmer) {

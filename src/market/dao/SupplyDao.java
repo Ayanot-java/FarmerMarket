@@ -1,14 +1,15 @@
-package dao;
+package market.dao;
 
-import bean.Farmer;
-import bean.Supply;
+import market.bean.Farmer;
+import market.bean.Supply;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by Tane4ka on 18.01.2017.
  */
-public interface supplyDao {
+public interface SupplyDao {
 
     public void create(Farmer farmer);
     public Supply read(Farmer farmer, Date saldate);

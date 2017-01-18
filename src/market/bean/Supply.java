@@ -1,4 +1,4 @@
-package bean;
+package market.bean;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -16,14 +16,4 @@ public interface PurchaseDAO {
     public List<Purchase> findAllByBuyer(Buyer buyer);
     public Purchase read(Integer id);
 
-    /*
-    CRUD
-    public void create(Buyer);  //new Purchase,
-    public void delete(Integer id);  // empty
-    List listAll
-    ArrayList<Purchase>findAllbyBuyer(buyer)
-    public Purcase read(id);
-
-    */
-
 }
