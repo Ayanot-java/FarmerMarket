@@ -1,24 +1,17 @@
 package market.util;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-/**
- * Created by Tane4ka on 17.01.2017.
- */
 public class HibernateUtil {
-    private static final SessionFactory sessionFactory = buildSessionFactory();
+	private static SessionFactory sessionFactory;
+	public static SessionFactory getSessionFactory() 
+	{
+		if (sessionFactory == null) 
+		{
+			Configuration configuration = new Configuration().configure();
+			sessionFactory = configuration.buildSessionFactory();
+		}
 
-    private static SessionFactory buildSessionFactory() {
-        try {
-            return new Configuration().configure("/santa/bean/hibernate.cfg.xml").buildSessionFactory();
-        } catch (Throwable ex) {
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+		return sessionFactory;
+	}
 }
