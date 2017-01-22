@@ -15,4 +15,6 @@ public class Stock {
     @GeneratedValue
     @Column(name = "id")
     private Integer stockId;
+
+    private Product product;
 }
