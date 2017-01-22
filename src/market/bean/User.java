@@ -1,9 +1,18 @@
 package market.bean;
+<<<<<<< HEAD
+
+import javax.persistence.*;
+
+=======
+import javax.persistence.*;
+
+
+>>>>>>> origin/master
 @Entity
 @Table(name = "user")
 public class User {
 
-	public User(String loginName, String password, String type) {
+	public User(String userName, String password, String type) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -11,9 +20,13 @@ public class User {
 	}
 	@Id
 	@GeneratedValue
-	@column(name = "id")
+	@Column(name = "id")
 	private int id;
-	@column(name = "userName")
+<<<<<<< HEAD
+	@Column(name = "username")
+=======
+	@Column(name = "userName")
+>>>>>>> origin/master
 
 	private String userName;
 	
