@@ -19,6 +19,7 @@ public class Test {
 		System.out.println("Yollo!");
 		//
 
+		System.out.println("asfasf");
 
     }
 }
