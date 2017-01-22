@@ -16,7 +16,31 @@ public class Stock {
     @Column(name = "id")
     private Integer stockId;
 
+    @ManyToMany
+    @Column(name = "product_id")
     private Product product;
 
-    private int hey;
+
+    @ManyToMany
+    @Column(name = ("farmer_id"))
+    private Farmer farmer;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Farmer getFarmer() {
+        return farmer;
+    }
+
+    public void setFarmer(Farmer farmer) {
+        this.farmer = farmer;
+
+    }
+
+
 }
