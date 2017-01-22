@@ -1,4 +1,7 @@
 package market.bean;
+import javax.persistence.*;
+
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -11,9 +14,9 @@ public class User {
 	}
 	@Id
 	@GeneratedValue
-	@column(name = "id")
+	@Column(name = "id")
 	private int id;
-	@column(name = "userName")
+	@Column(name = "userName")
 
 	private String userName;
 	
