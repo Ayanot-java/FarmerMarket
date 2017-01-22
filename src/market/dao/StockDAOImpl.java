@@ -1,13 +1,14 @@
 package market.dao;
 
 import market.bean.Stock;
+import market.bean.SupplyDetails;
 
 /**
  * Created by LazeL on 22.01.2017.
  */
 public class StockDAOImpl implements StockDAO {
     @Override
-    public void create(Stock stock) {
+    public void create(SupplyDetails supplyDetails) {
 
     }
 
@@ -17,7 +18,7 @@ public class StockDAOImpl implements StockDAO {
     }
 
     @Override
-    public void update(Integer id, Float availableQNT) {
+    public void update(Integer id, Float newAvailableQnt) {
 
     }
 
