@@ -17,20 +17,20 @@ public class Stock {
     private Integer stockId;
 
     @ManyToMany
-    @Column(name = "product_id")
-    private Product product;
+    @Column(name = "supply_details_id")
+    private SupplyDetails supplyDetails;
 
 
     @ManyToMany
     @Column(name = ("farmer_id"))
     private Farmer farmer;
 
-    public Product getProduct() {
-        return product;
+    public SupplyDetails getSupplyDetails() {
+        return supplyDetails;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setSupplyDetails(SupplyDetails supplyDetails) {
+        this.supplyDetails = supplyDetails;
     }
 
     public Farmer getFarmer() {
