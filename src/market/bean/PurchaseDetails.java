@@ -29,7 +29,7 @@ public class PurchaseDetails {
     private Purchase purchase;
 
     @ManyToOne
-    @Column(name = "purchase_id")
+    @Column(name = "supply_details")
     private SupplyDetails supplyDetails;
 
     public PurchaseDetails() {
