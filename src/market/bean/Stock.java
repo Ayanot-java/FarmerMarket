@@ -39,6 +39,7 @@ public class Stock {
 
     public void setFarmer(Farmer farmer) {
         this.farmer = farmer;
+
     }
 
 
