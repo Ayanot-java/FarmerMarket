@@ -15,6 +15,8 @@ public class Test {
 		//From Eclipse
 		//from eclipse 22323232
 		System.out.println("test1");
+		
+		System.out.println("Yollo!");
 
 
     }
