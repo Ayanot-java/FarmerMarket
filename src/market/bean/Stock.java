@@ -17,4 +17,7 @@ public class Stock {
     private Integer stockId;
 
     private Product product;
+
+
+    private byte randomByte = 4;
 }
