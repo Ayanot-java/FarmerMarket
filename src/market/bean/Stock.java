@@ -1,8 +1,7 @@
 package market.bean;
 
-
-
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -24,6 +23,47 @@ public class Stock {
     @ManyToMany
     @Column(name = ("farmer_id"))
     private Farmer farmer;
+
+    @ManyToMany
+    @Column(name = ("available_qnt"))
+    private Float available_qnt;
+
+    @ManyToMany
+    @Column(name = ("sDate"))
+    private Date sDate;
+
+    @ManyToMany
+    @Column(name = ("sPrice"))
+    private Float sPrice;
+
+    public Integer getStockId() {
+        return stockId;
+    }
+
+    public Float getAvailable_qnt() {
+
+        return available_qnt;
+    }
+
+    public void setAvailable_qnt(Float available_qnt) {
+        this.available_qnt = available_qnt;
+    }
+
+    public Date getsDate() {
+        return sDate;
+    }
+
+    public void setsDate(Date sDate) {
+        this.sDate = sDate;
+    }
+
+    public Float getsPrice() {
+        return sPrice;
+    }
+
+    public void setsPrice(Float sPrice) {
+        this.sPrice = sPrice;
+    }
 
     public Product getProduct() {
         return product;
