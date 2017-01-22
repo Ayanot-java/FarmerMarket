@@ -9,5 +9,5 @@ public interface StockDAO {
     public void create(Stock stock);
     public Stock read(Integer id);
     public void update(Integer id, Float availableQNT);
-    public void delete();
+    public void delete(Integer id);
 }
