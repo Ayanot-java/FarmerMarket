@@ -19,7 +19,4 @@ public class Stock {
     private Product product;
 
     private int hey;
-
-
-    private byte randomByte = 4;
 }
