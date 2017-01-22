@@ -9,13 +9,17 @@ public class Test {
 		System.out.println("Privet Okun!");
         System.out.println("raz-raz");
 		System.out.println("Push me");
-
+		System.out.println("And then just touch me");
 		System.out.println("Pupuppupupupush me");
 		System.out.println("atata");
 		//From Eclipse
 		//from eclipse 22323232
 		System.out.println("test1");
+		
+		System.out.println("Yollo!");
+		//
 
+		System.out.println("asfasf");
 
     }
 }
