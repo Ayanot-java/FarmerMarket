@@ -1,7 +1,13 @@
 package market.bean;
+<<<<<<< HEAD
 
 import javax.persistence.*;
 
+=======
+import javax.persistence.*;
+
+
+>>>>>>> origin/master
 @Entity
 @Table(name = "user")
 public class User {
@@ -16,7 +22,11 @@ public class User {
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
+<<<<<<< HEAD
 	@Column(name = "username")
+=======
+	@Column(name = "userName")
+>>>>>>> origin/master
 
 	private String userName;
 	
