@@ -17,4 +17,6 @@ public class Stock {
     private Integer stockId;
 
     private Product product;
+
+    private int hey;
 }
