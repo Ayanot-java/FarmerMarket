@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void create(String username, String passwd) throws Exception {
-		if(read(username) == null){
+		if (read(username) == null) {
 			Transaction tx = null;
 			try {
 				Session session = factory.openSession();
@@ -27,13 +27,13 @@ public class UserDAOImpl implements UserDAO {
 				session.save(new User(username, passwd));
 				tx.commit();
 				session.close();
-			} catch (Exception e){
-				if (tx != null){
+			} catch (Exception e) {
+				if (tx != null) {
 					tx.rollback();
 					e.printStackTrace();
 				}
 			}
-		}else{
+		} else {
 			throw new Exception("Username is already in use. Choose another one");
 		}
 	}
@@ -44,12 +44,11 @@ public class UserDAOImpl implements UserDAO {
 		String hql = "from User U where U.id = :id";
 		Query<User> query = session.createQuery(hql, User.class);
 		query.setParameter("id", id);
-		Transaction tx = session.beginTransaction();
 		List<User> results = query.list();
-		if (results.isEmpty()){
+		session.close();
+		if (results.isEmpty()) {
 			return null;
-		}
-		else{
+		} else {
 			return results.get(0);
 		}
 	}
@@ -62,10 +61,10 @@ public class UserDAOImpl implements UserDAO {
 		query.setParameter("username", username);
 		Transaction tx = session.beginTransaction();
 		List<User> results = query.list();
-		if (results.isEmpty()){
+		session.close();
+		if (results.isEmpty()) {
 			return null;
-		}
-		else{
+		} else {
 			return results.get(0);
 		}
 	}
@@ -79,17 +78,34 @@ public class UserDAOImpl implements UserDAO {
 		query.setParameter("passwd", passwd);
 		Transaction tx = session.beginTransaction();
 		List<User> results = query.list();
-		if (results.isEmpty()){
+		session.close();
+		if (results.isEmpty()) {
 			return null;
-		}
-		else{
+		} else {
 			return results.get(0);
 		}
 	}
 
 	@Override
-	public void delete(Integer id) {
-
+	public void delete(Integer id) throws Exception {
+		User user = read(id);
+		if (user != null) {
+			Transaction tx = null;
+			try {
+				Session session = factory.openSession();
+				tx = session.beginTransaction();
+				session.delete(user);
+				tx.commit();
+				session.close();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+					e.printStackTrace();
+				}
+			}
+		} else {
+			throw new Exception("No such user");
+		}
 	}
 
 	@Override
