@@ -21,6 +21,9 @@ public class Farmer {
 
     public Farmer(String name) {
         this.name = name;
+        this.adress = "123";
+        this.phone = "445";
+        this.type = null;
     }
 
     public Farmer() {
@@ -75,6 +78,17 @@ public class Farmer {
 
     public void setType(FarmerType type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Farmer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", adress='" + adress + '\'' +
+                ", phone='" + phone + '\'' +
+                ", type=" + type +
+                '}';
     }
 
     @Override

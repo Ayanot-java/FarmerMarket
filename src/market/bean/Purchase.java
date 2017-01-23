@@ -11,12 +11,12 @@ import java.util.*;
 public class Purchase {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer purchaseId;
 
     @ManyToOne
-    @Column(name = "buyer_id")
+    @JoinColumn(name = "buyer_id")
     private Buyer buyer;
 
     @Column(name = "purchase_date")
@@ -62,7 +62,7 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return purchaseDate+"\nBuyer: "+buyer.getName();
+        return purchaseDate+"\nBuyer: "+buyer.getBuyerName();
     }
 
     @Override

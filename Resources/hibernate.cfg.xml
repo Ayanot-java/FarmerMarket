@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<hibernate-configuration>
+   <session-factory>
+   <property name="hibernate.dialect">
+      org.hibernate.dialect.MySQL5Dialect
+   </property>
+   <property name="hibernate.connection.driver_class">
+      com.mysql.jdbc.Driver
+   </property>
+   <property name="hibernate.connection.url">
+      jdbc:mysql://localhost/farmermarket?useSSL=false
+   </property>
+   <property name="hibernate.connection.username">
+      iitclector
+   </property>
+   <property name="hibernate.connection.password">
+      123456
+   </property>
+   <property name="show_sql">true</property>
+   <property name="format_sql">true</property>
+   <property name="hibernate.current_session_context_class">thread</property>
+<!--    <property name="hbm2ddl.auto">create</property> -->    
+   
+   <mapping class="market.bean.Buyer"/>
+   <mapping class="market.bean.BuyerType"/>
+   <mapping class="market.bean.Farmer"/>
+   <mapping class="market.bean.FarmerType"/>
+   <mapping class="market.bean.Product"/>
+   <mapping class="market.bean.ProductType"/>
+   <mapping class="market.bean.User"/>
+   <mapping class="market.bean.Supply"/>
+   <mapping class="market.bean.SupplyDetails"/>
+   <mapping class="market.bean.Purchase"/>
+   <mapping class="market.bean.PurchaseDetails"/>
+    <mapping class="market.bean.Pack"/>
+   
+   
+</session-factory>
+</hibernate-configuration>
