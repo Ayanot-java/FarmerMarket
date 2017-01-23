@@ -1,6 +1,7 @@
 package market.dao;
 
 import market.bean.Farmer;
+import market.bean.FarmerType;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface FarmerDAO {
    // public Farmer farmer;
     public void create (String name);
     public void delete (int id);
-    public void update(Farmer farmerForUpdate);
+    public void update(int id, String name);
     public Farmer read (int id);
     public Farmer find (int id);
     public List<Farmer> listAll ();

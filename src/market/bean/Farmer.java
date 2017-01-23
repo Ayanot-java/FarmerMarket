@@ -21,6 +21,9 @@ public class Farmer {
 
     public Farmer(String name) {
         this.name = name;
+        this.adress = "123";
+        this.phone = "445";
+        this.type = null;
     }
 
     public Farmer() {

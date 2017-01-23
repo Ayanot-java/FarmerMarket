@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class FarmerDAOImpl implements FarmerDAO {
         FarmerType type = new FarmerTypeDAOImpl().read(1);
         try (Session session = factory.getCurrentSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("select count(*) from farmer where lower(name) = :name");
+            Query query = session.createQuery("select count(*) from Farmer where lower(name) = :name");
             query.setParameter("name", name.toLowerCase());
             Long num = (Long) query.getSingleResult();
 
@@ -65,27 +66,15 @@ public class FarmerDAOImpl implements FarmerDAO {
     }
 
     @Override
-    public void update(Farmer farmerForUpdate) {
+    public void update(int id, String name) {
         Transaction transaction = null;
-//        int id = farmerForUpdate.getId();
-//        Farmer farmer = read(id);
+        Farmer farmer = read(id);
         try (Session session = factory.getCurrentSession()) {
             transaction = session.beginTransaction();
-            /*if (farmerForUpdate.getName()!= null){
-                farmer.setName(farmerForUpdate.getName());
-            }
-            if (farmerForUpdate.getAdress() != null){
-                farmer.setAdress(farmerForUpdate.getAdress());
-            }
-            if (farmerForUpdate.getPhone() != null) {
-                farmer.setAdress(farmerForUpdate.getPhone());
-            }
-            if (farmerForUpdate.getType() != null) {
-                farmer.setType(farmerForUpdate.getType());
-            }*/
-            session.update(farmerForUpdate);
-            System.out.println("Update complete");
+            farmer.setName(name);
+            session.update(farmer);
             transaction.commit();
+            System.out.println("Update complete");
         }
     }
 
@@ -110,12 +99,19 @@ public class FarmerDAOImpl implements FarmerDAO {
     }
 
     @Override
-    public Farmer find(int id) {
+    public Farmer find (int id) {
         return null;
     }
 
     @Override
     public List<Farmer> listAll() {
-        return null;
+        Transaction transaction = null;
+        ArrayList <Farmer> farmerList = new ArrayList<>();
+        try (Session session = factory.getCurrentSession()) {
+            transaction = session.beginTransaction();
+            farmerList = (ArrayList<Farmer>) session.createQuery("from Farmer").getResultList();
+            transaction.commit();
+        }
+        return farmerList;
     }
 }
