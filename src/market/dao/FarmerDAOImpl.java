@@ -26,7 +26,7 @@ public class FarmerDAOImpl implements FarmerDAO {
         FarmerType type = new FarmerTypeDAOImpl().read(1);
         try (Session session = factory.getCurrentSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("select count(*) from Farmer where lower(name) = :name");
+            Query query = session.createQuery("select count(*) from farmer where lower(name) = :name");
             query.setParameter("name", name.toLowerCase());
             Long num = (Long) query.getSingleResult();
 
@@ -49,17 +49,64 @@ public class FarmerDAOImpl implements FarmerDAO {
 
     @Override
     public void delete(int id) {
-
+        Transaction transaction = null;
+        Farmer farmer = read(id);
+        try (Session session = factory.getCurrentSession()) {
+            transaction = session.beginTransaction();
+            if (farmer!=null) {
+                session.delete(farmer);
+                transaction.commit();
+                System.out.println("Succesesfully deleted");
+            }
+            else {
+                System.out.println("Farmer with this ID is not found");
+            }
+        }
     }
 
     @Override
-    public void update(int id) {
-
+    public void update(Farmer farmerForUpdate) {
+        Transaction transaction = null;
+//        int id = farmerForUpdate.getId();
+//        Farmer farmer = read(id);
+        try (Session session = factory.getCurrentSession()) {
+            transaction = session.beginTransaction();
+            /*if (farmerForUpdate.getName()!= null){
+                farmer.setName(farmerForUpdate.getName());
+            }
+            if (farmerForUpdate.getAdress() != null){
+                farmer.setAdress(farmerForUpdate.getAdress());
+            }
+            if (farmerForUpdate.getPhone() != null) {
+                farmer.setAdress(farmerForUpdate.getPhone());
+            }
+            if (farmerForUpdate.getType() != null) {
+                farmer.setType(farmerForUpdate.getType());
+            }*/
+            session.update(farmerForUpdate);
+            System.out.println("Update complete");
+            transaction.commit();
+        }
     }
 
     @Override
     public Farmer read(int id) {
-        return null;
+        Transaction transaction = null;
+        Farmer farmer = null;
+        try(Session session = factory.getCurrentSession())
+        {
+            transaction = session.beginTransaction();
+            farmer = (Farmer) session.get(Farmer.class, id);
+            transaction.commit();
+            /*session.close();
+            factory.close();*/
+        }
+        catch (HibernateException e)
+        {
+            if (transaction!=null) transaction.rollback();
+            e.printStackTrace();
+        }
+        return farmer;
     }
 
     @Override
