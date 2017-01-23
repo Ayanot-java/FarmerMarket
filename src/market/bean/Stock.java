@@ -1,5 +1,7 @@
 package market.bean;
 
+
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,8 +18,8 @@ public class Stock {
     private Integer stockId;
 
     @ManyToMany
-    @Column(name = "product_id")
-    private Product product;
+    @Column(name = "supply_details_id")
+    private SupplyDetails supplyDetails;
 
 
     @ManyToMany
@@ -26,7 +28,7 @@ public class Stock {
 
     @ManyToMany
     @Column(name = ("available_qnt"))
-    private Float available_qnt;
+    private Float availableQnt;
 
     @ManyToMany
     @Column(name = ("sDate"))
@@ -40,13 +42,13 @@ public class Stock {
         return stockId;
     }
 
-    public Float getAvailable_qnt() {
+    public Float getAvailableQnt() {
 
-        return available_qnt;
+        return availableQnt;
     }
 
-    public void setAvailable_qnt(Float available_qnt) {
-        this.available_qnt = available_qnt;
+    public void setAvailableQnt(Float availableQnt) {
+        this.availableQnt = availableQnt;
     }
 
     public Date getsDate() {
@@ -65,12 +67,8 @@ public class Stock {
         this.sPrice = sPrice;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public SupplyDetails getSupplyDetails() {
+        return supplyDetails;
     }
 
     public Farmer getFarmer() {
@@ -82,5 +80,43 @@ public class Stock {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Stock)) return false;
 
+        Stock stock = (Stock) o;
+
+        if (getStockId() != null ? !getStockId().equals(stock.getStockId()) : stock.getStockId() != null) return false;
+        if (getSupplyDetails() != null ? !getSupplyDetails().equals(stock.getSupplyDetails()) : stock.getSupplyDetails() != null)
+            return false;
+        if (getFarmer() != null ? !getFarmer().equals(stock.getFarmer()) : stock.getFarmer() != null) return false;
+        if (getAvailableQnt() != null ? !getAvailableQnt().equals(stock.getAvailableQnt()) : stock.getAvailableQnt() != null)
+            return false;
+        if (getsDate() != null ? !getsDate().equals(stock.getsDate()) : stock.getsDate() != null) return false;
+        return getsPrice() != null ? getsPrice().equals(stock.getsPrice()) : stock.getsPrice() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getStockId() != null ? getStockId().hashCode() : 0;
+        result = 31 * result + (getSupplyDetails() != null ? getSupplyDetails().hashCode() : 0);
+        result = 31 * result + (getFarmer() != null ? getFarmer().hashCode() : 0);
+        result = 31 * result + (getAvailableQnt() != null ? getAvailableQnt().hashCode() : 0);
+        result = 31 * result + (getsDate() != null ? getsDate().hashCode() : 0);
+        result = 31 * result + (getsPrice() != null ? getsPrice().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "stockId=" + stockId +
+                ", supplyDetails=" + supplyDetails +
+                ", farmer=" + farmer +
+                ", availableQnt=" + availableQnt +
+                ", sDate=" + sDate +
+                ", sPrice=" + sPrice +
+                '}';
+    }
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by Tane4ka on 18.01.2017.
  */
-public class SupplyDaoImplements implements SupplyDao {
+public class SupplyDaoImpl implements SupplyDao {
 
     @Override
     public void create(Farmer farmer) {

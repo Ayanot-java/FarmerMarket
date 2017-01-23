@@ -10,13 +10,10 @@ import java.util.Date;
 @Table(name = "supply")
 public class Supply {
 
-    private int id;
-    private Date date;
-    private Farmer farmer;
-    private float total;
-
     @Id @GeneratedValue
     @Column(name = "id")
+    private int id;
+
     public int getId() {
         return id;
     }
@@ -26,6 +23,8 @@ public class Supply {
     }
 
     @Column(name = "sDate")
+    private Date date;
+
     public Date getDate() {
         return date;
     }
@@ -35,6 +34,8 @@ public class Supply {
     }
 
     @Column(name = "farmer")
+    private Farmer farmer;
+
     public Farmer getFarmer() {
         return farmer;
     }
@@ -44,6 +45,8 @@ public class Supply {
     }
 
     @Column(name = "total")
+    private float total;
+
     public float getTotal() {
         return total;
     }
