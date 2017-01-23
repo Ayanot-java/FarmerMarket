@@ -13,13 +13,16 @@ public class Buyer {
     private BuyerType type;
 
     public Buyer() {
+        super();
     }
 
     public Buyer(String name) {
+        super();
         this.name = name;
     }
 
     public Buyer(Integer id, String name, String address, String phone, BuyerType type) {
+        super();
         this.id = id;
         this.name = name;
         this.address = address;

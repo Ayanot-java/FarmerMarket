@@ -12,10 +12,17 @@ public class BuyerType {
     private String name;
 
     public BuyerType() {
+        super();
     }
 
     public BuyerType(int id, String name) {
+        super();
         this.id = id;
+        this.name = name;
+    }
+
+    public BuyerType(String name) {
+        super();
         this.name = name;
     }
 
