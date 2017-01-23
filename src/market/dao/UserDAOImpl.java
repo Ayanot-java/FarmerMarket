@@ -1,14 +1,18 @@
 package market.dao;
 
 import market.bean.User;
+import market.util.HibernateUtil;
+import org.hibernate.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Vitaly Sokolov on 22.01.2017.
  */
 public class UserDAOImpl implements UserDAO {
 	//TODO: Implement methods
+	SessionFactory factory = HibernateUtil.getSessionFactory();
 
 	@Override
 	public void create(String username, String passwd) throws Exception {
