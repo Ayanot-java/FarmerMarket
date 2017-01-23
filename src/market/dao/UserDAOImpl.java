@@ -2,7 +2,10 @@ package market.dao;
 
 import market.bean.User;
 import market.util.HibernateUtil;
-import org.hibernate.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,11 +55,28 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User read(String name) {
+	public User read(String username) {
 		Session session = factory.openSession();
 		String hql = "from User U where U.username = :username";
 		Query<User> query = session.createQuery(hql);
-		query.setParameter("username", name);
+		query.setParameter("username", username);
+		Transaction tx = session.beginTransaction();
+		List<User> results = query.list();
+		if (results.isEmpty()){
+			return null;
+		}
+		else{
+			return results.get(0);
+		}
+	}
+
+	@Override
+	public User read(String username, String passwd) {
+		Session session = factory.openSession();
+		String hql = "from User U where U.username = :username AND U.passwd = :passwd";
+		Query<User> query = session.createQuery(hql);
+		query.setParameter("username", username);
+		query.setParameter("passwd", passwd);
 		Transaction tx = session.beginTransaction();
 		List<User> results = query.list();
 		if (results.isEmpty()){
