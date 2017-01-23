@@ -34,7 +34,7 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
             tx = session.beginTransaction();
             session.save(supplyDetails);
             tx.commit();
-            System.out.println("Records inserted sucessessfully");
+            System.out.println("Records inserted successfully");
 
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
