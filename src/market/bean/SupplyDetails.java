@@ -12,7 +12,19 @@ public class SupplyDetails {
     private int id;
     private float qnt;
     private float price;
-    private Product product;
+    private int productId;
+    private int supplyId;
+
+    public SupplyDetails() {
+    }
+
+    public SupplyDetails(int id, float qnt, float price, Product product, Supply supply) {
+        this.id = id;
+        this.qnt = qnt;
+        this.price = price;
+        this.productId = productId;
+        this.supplyId = supplyId;
+    }
 
     @Id @GeneratedValue
     @Column(name = "id")
@@ -43,12 +55,21 @@ public class SupplyDetails {
     }
 
     @Column(name = "product")
-    public Product getProduct() {
-        return product;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(int product) {
+        this.productId = productId;
+    }
+
+    @Column(name = "supply")
+    public int getSupplyId() {
+        return supplyId;
+    }
+
+    public void setSupplyId(int supply) {
+        this.supplyId = supplyId;
     }
 
     @Override
@@ -61,7 +82,8 @@ public class SupplyDetails {
         if (id != that.id) return false;
         if (Float.compare(that.qnt, qnt) != 0) return false;
         if (Float.compare(that.price, price) != 0) return false;
-        return product.equals(that.product);
+        if (productId != that.productId) return false;
+        return supplyId == that.supplyId;
     }
 
     @Override
@@ -69,7 +91,8 @@ public class SupplyDetails {
         int result = id;
         result = 31 * result + (qnt != +0.0f ? Float.floatToIntBits(qnt) : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
-        result = 31 * result + product.hashCode();
+        result = 31 * result + productId;
+        result = 31 * result + supplyId;
         return result;
     }
 }

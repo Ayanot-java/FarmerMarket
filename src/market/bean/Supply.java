@@ -12,9 +12,18 @@ public class Supply {
 
 
     private int id;
-    private Date date;
-    private Farmer farmer;
+    private String date;
+    private int idFarmer;
     private float total;
+
+    public Supply() {
+    }
+
+    public Supply(int id, String date, Farmer farmer) {
+        this.id = id;
+        this.date = date;
+        this.idFarmer = idFarmer;
+    }
 
     @Id
     @GeneratedValue
@@ -28,21 +37,21 @@ public class Supply {
     }
 
     @Column(name = "sDate")
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String  date) {
         this.date = date;
     }
 
     @Column(name = "farmer")
-    public Farmer getFarmer() {
-        return farmer;
+    public int getFarmer() {
+        return idFarmer;
     }
 
-    public void setFarmer(Farmer farmer) {
-        this.farmer = farmer;
+    public void setFarmer(int idFarmer) {
+        this.idFarmer= idFarmer;
     }
 
     @Column(name = "total")
@@ -62,16 +71,16 @@ public class Supply {
         Supply supply = (Supply) o;
 
         if (id != supply.id) return false;
+        if (idFarmer != supply.idFarmer) return false;
         if (Float.compare(supply.total, total) != 0) return false;
-        if (!date.equals(supply.date)) return false;
-        return farmer.equals(supply.farmer);
+        return date.equals(supply.date);
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + date.hashCode();
-        result = 31 * result + farmer.hashCode();
+        result = 31 * result + idFarmer;
         result = 31 * result + (total != +0.0f ? Float.floatToIntBits(total) : 0);
         return result;
     }
