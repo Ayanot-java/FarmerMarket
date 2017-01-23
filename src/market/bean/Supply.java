@@ -10,12 +10,14 @@ import java.util.Date;
 @Table(name = "supply")
 public class Supply {
 
+
     private int id;
     private Date date;
     private Farmer farmer;
     private float total;
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "id")
     public int getId() {
         return id;
