@@ -1,9 +1,6 @@
 package market.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Tane4ka on 17.01.2017.
@@ -12,17 +9,33 @@ import javax.persistence.Table;
 @Table (name = "product")
 public class Product {
     @Id
-    @Column (name = "id")
+    @GeneratedValue
+    @Column(name = "id")
     private int id;
 
-    @Column (name = "name")
+    @Column(name = "name")
     private String name;
 
-    @Column (name = "type")
-    private String type;
+    @Column(name = "Ptype")
+    @ManyToOne
+    private ProductType ptype;
 
-    @Column (name = "img")
-    private String img;
+    @Column(name = "image")
+    private String image;
+
+    public Product() {
+    }
+
+    public Product(String name, ProductType ptype, String image) {
+        this.name = name;
+        this.ptype = ptype;
+        this.image = image;
+    }
+
+    public Product(String name, ProductType ptype) {
+        this.name = name;
+        this.ptype = ptype;
+    }
 
     public int getId() {
         return id;
@@ -40,20 +53,20 @@ public class Product {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public ProductType getPtype() {
+        return ptype;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPtype(ProductType ptype) {
+        this.ptype = ptype;
     }
 
-    public String getImg() {
-        return img;
+    public String getImage() {
+        return image;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImage(String img) {
+        this.image = img;
     }
 
     @Override
@@ -64,19 +77,17 @@ public class Product {
         Product product = (Product) o;
 
         if (id != product.id) return false;
-        if (name != null ? !name.equals(product.name) : product.name != null) return false;
-        if (type != null ? !type.equals(product.type) : product.type != null) return false;
-        if (img != null ? !img.equals(product.img) : product.img != null) return false;
-
-        return true;
+        if (!name.equals(product.name)) return false;
+        if (!ptype.equals(product.ptype)) return false;
+        return image.equals(product.image);
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (img != null ? img.hashCode() : 0);
+        result = 31 * result + name.hashCode();
+        result = 31 * result + ptype.hashCode();
+        result = 31 * result + image.hashCode();
         return result;
     }
 }
