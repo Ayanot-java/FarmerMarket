@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class PurchaseDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer Id;
 
@@ -21,15 +21,15 @@ public class PurchaseDetails {
     private Double price;
 
     @ManyToOne
-    @Column(name = "pack_id")
+    @JoinColumn(name = "pack_id")
     private Pack pack;
 
     @ManyToOne
-    @Column(name = "purchase_id")
+    @JoinColumn(name = "purchase_id")
     private Purchase purchase;
 
     @ManyToOne
-    @Column(name = "supply_details")
+    @JoinColumn(name = "supply_id")
     private SupplyDetails supplyDetails;
 
     public PurchaseDetails() {
