@@ -21,7 +21,7 @@ public class User {
 	
 	public User(String userName, String passwd){
 		this.userName = userName;
-		this.passwd=  passwd;
+		this.passwd =  passwd;
 	}
 	@Id
 	@GeneratedValue

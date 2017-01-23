@@ -11,13 +11,56 @@ public class UserDAOImpl implements UserDAO {
 	//TODO: Implement methods
 
 	@Override
-	public void create(User user) {
-
+	public void create(String username, String passwd) throws Exception {
+		if(read(username) == null){
+			Transaction tx = null;
+			try {
+				Session session = factory.openSession();
+				tx = session.beginTransaction();
+				session.save(new User(username, passwd));
+				tx.commit();
+				session.close();
+			} catch (Exception e){
+				if (tx != null){
+					tx.rollback();
+					e.printStackTrace();
+				}
+			}
+		}else{
+			throw new Exception("Username is already in use. Choose another one");
+		}
 	}
 
 	@Override
 	public User read(Integer id) {
-		return null;
+		Session session = factory.openSession();
+		String hql = "from User U where U.id = :id";
+		Query<User> query = session.createQuery(hql, User.class);
+		query.setParameter("id", id);
+		Transaction tx = session.beginTransaction();
+		List<User> results = query.list();
+		if (results.isEmpty()){
+			return null;
+		}
+		else{
+			return results.get(0);
+		}
+	}
+
+	@Override
+	public User read(String name) {
+		Session session = factory.openSession();
+		String hql = "from User U where U.username = :username";
+		Query<User> query = session.createQuery(hql);
+		query.setParameter("username", name);
+		Transaction tx = session.beginTransaction();
+		List<User> results = query.list();
+		if (results.isEmpty()){
+			return null;
+		}
+		else{
+			return results.get(0);
+		}
 	}
 
 	@Override
