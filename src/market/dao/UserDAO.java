@@ -7,7 +7,7 @@ import market.bean.User;
 
 public interface UserDAO {
 
-		public void create(User user);
+		public void create(String userName, String passwd );
 		public User read(Integer id);
 		public void delete(Integer id);
 		public void update(Integer id);
