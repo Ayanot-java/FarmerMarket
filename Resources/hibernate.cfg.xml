@@ -28,7 +28,7 @@
    <mapping class="market.bean.FarmerType"/>
    <mapping class="market.bean.Product"/>
    <mapping class="market.bean.ProductType"/>
-  
+   <mapping class="market.bean.User"/>
    <mapping class="market.bean.Supply"/>
    <mapping class="market.bean.SupplyDetails"/>
    <mapping class="market.bean.Purchase"/>
