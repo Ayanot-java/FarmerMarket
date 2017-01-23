@@ -7,10 +7,14 @@ import market.bean.User;
 
 public interface UserDAO {
 
-		public void create(User user);
-		public User read(Integer id);
-		public void delete(Integer id);
-		public void update(Integer id);
-		public ArrayList<User> listAll();
+	public void create(String userName, String passwd ) throws Exception;
+
+	User read(Integer id);
+
+	public User read(String username);
+	public User read(String username, String passwd);
+	public void delete(Integer id);
+	public void update(Integer id);
+	public ArrayList<User> listAll();
 		
 }

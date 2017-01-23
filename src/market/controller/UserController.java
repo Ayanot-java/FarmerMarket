@@ -62,8 +62,13 @@ public class UserController extends HttpServlet
 			case ACTION_NEW_USER:
 				username = request.getParameter("username");
 				password = request.getParameter("password");
-				userDao.create(username, password);
-				user = userDao.read(username, password);
+				try {
+					userDao.create(username, password);
+				} catch (Exception e) {
+					//TODO: Handle "username in use" case
+					e.printStackTrace();
+				}
+				user = userDao.read(username);
 				session.setAttribute("username", username);
 				session.setAttribute("userId", user.getId());	
 				forward = LIST_USERS;
