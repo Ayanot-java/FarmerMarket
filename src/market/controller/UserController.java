@@ -64,8 +64,8 @@ public class UserController extends HttpServlet
 				password = request.getParameter("password");
 				try {
 					userDao.create(username, password);
-					//TODO: Handle "username is in use" case
 				} catch (Exception e) {
+					//TODO: Handle "username in use" case
 					e.printStackTrace();
 				}
 				user = userDao.read(username);
@@ -77,7 +77,7 @@ public class UserController extends HttpServlet
 			case ACTION_LOGIN:
 				username = request.getParameter("username");
 				password = request.getParameter("password");
-				user = userDao.read(username);
+				user = userDao.read(username, password);
 				
 				if(user != null)
 				{					
