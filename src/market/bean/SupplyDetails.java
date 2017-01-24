@@ -9,55 +9,58 @@ import javax.persistence.*;
 @Table(name = "supplydetails")
 public class SupplyDetails {
 
-    private int id;
-    private float qnt;
-    private float price;
+    private Integer id;
+    private Float qnt;
+    private Float price;
     private Product product;
     private Supply supply;
+    private Pack pack;
 
     public SupplyDetails() {
     }
 
-    public SupplyDetails(int id, float qnt, float price, Product product, Supply supply) {
+    public SupplyDetails(Integer id, Float qnt, Float price, Product product, Supply supply, Pack pack) {
         this.id = id;
         this.qnt = qnt;
         this.price = price;
         this.product = product;
         this.supply = supply;
+        this.pack = pack;
     }
 
-    public SupplyDetails(float qnt, float price, Product product, Supply supply) {
+    public SupplyDetails(Float qnt, Float price, Product product, Supply supply, Pack pack) {
         this.qnt = qnt;
         this.price = price;
         this.product = product;
         this.supply = supply;
+        this.pack = pack;
     }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Column(name = "qnt")
-    public float getQnt() {
+    public Float getQnt() {
         return qnt;
     }
 
-    public void setQnt(float qnt) {
+    public void setQnt(Float qnt) {
         this.qnt = qnt;
     }
 
-    @Column(name = "price")
-    public float getPrice() {
+    @Column(name = "sprice")
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -81,6 +84,16 @@ public class SupplyDetails {
         this.supply = supply;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "pack")
+    public Pack getPack() {
+        return pack;
+    }
+
+    public void setPack(Pack pack) {
+        this.pack = pack;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,6 +105,7 @@ public class SupplyDetails {
         if (Float.compare(that.qnt, qnt) != 0) return false;
         if (Float.compare(that.price, price) != 0) return false;
         if (!product.equals(that.product)) return false;
+        if (!pack.equals(that.pack)) return false;
         return supply.equals(that.supply);
     }
 
@@ -102,6 +116,7 @@ public class SupplyDetails {
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
         result = 31 * result + product.hashCode();
         result = 31 * result + supply.hashCode();
+        result = 31 * result + pack.hashCode();
         return result;
     }
 }

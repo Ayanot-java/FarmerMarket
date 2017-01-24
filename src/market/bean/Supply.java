@@ -11,10 +11,10 @@ import java.util.Date;
 public class Supply {
 
 
-    private int id;
+    private Integer id;
     private Date sDate;
     private Farmer farmer;
-    private float total;
+    private Float total;
 
     public Supply() {
     }
@@ -24,7 +24,7 @@ public class Supply {
         this.farmer = farmer;
     }
 
-    public Supply(int id, Date SDate, Farmer farmer) {
+    public Supply(Integer id, Date sDate, Farmer farmer) {
         this.id = id;
         this.sDate = sDate;
         this.farmer = farmer;
@@ -33,15 +33,15 @@ public class Supply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "sDate")
+    @Column(name = "sdate")
     public Date getSdate() {
         return sDate;
     }
@@ -61,11 +61,11 @@ public class Supply {
     }
 
     @Column(name = "total")
-    public float getTotal() {
+    public Float getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(Float total) {
         this.total = total;
     }
 
