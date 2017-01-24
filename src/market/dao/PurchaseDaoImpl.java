@@ -24,12 +24,12 @@ public class PurchaseDaoImpl implements PurchaseDAO{
         this.sessionFactory = HibernateUtil.getSessionFactory();
     }
 
-    public void create(Buyer buyer){  // new Purchase
+    public void create(Buyer buyer){
 
         Transaction tx = null;
 
-        try(Session session = sessionFactory.getCurrentSession()){ //используем try с параметром для того, чтобы сессия закрылась
-                                                                  //самостоятельно после исполнения этого блока
+        try(Session session = sessionFactory.getCurrentSession()){
+
             tx = session.beginTransaction();
             Query query = session.createQuery("select count(*) from Purchase where buyer = :id and pDate = :date");
             Date now = new Date();
