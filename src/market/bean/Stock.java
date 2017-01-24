@@ -12,57 +12,53 @@ import java.sql.Date;
 @Entity
 @Table(name = "stock")
 public class Stock {
+
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Integer stockId;
+    private Integer id;
 
-    @ManyToMany
-    @Column(name = "supply_details_id")
-    private Integer supplyDetailsId;
+    @ManyToOne
+    @JoinColumn(name = "supplydetails")
+    private SupplyDetails supplyDetails;
 
+    @ManyToOne
+    @JoinColumn(name = "farmer")
+    private Farmer farmer;
 
-    @ManyToMany
-    @Column(name = ("farmer_id"))
-    private Integer farmerId;
-
-    @ManyToMany
-    @Column(name = ("available_qnt"))
+    @Column(name = "availableqnt")
     private Float availableQnt;
 
-    @ManyToMany
-    @Column(name = ("sDate"))
+
+    @Column(name = "sdate")
     private Date sDate;
 
-    @ManyToMany
+
     @Column(name = ("sPrice"))
     private Float sPrice;
 
-
-
-    public Integer getStockId() {
-
-        return stockId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setStockId(Integer stockId) {
-        this.stockId = stockId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getSupplyDetailsId() {
-        return supplyDetailsId;
+    public SupplyDetails getSupplyDetails() {
+        return supplyDetails;
     }
 
-    public void setSupplyDetailsId(Integer supplyDetailsId) {
-        this.supplyDetailsId = supplyDetailsId;
+    public void setSupplyDetails(SupplyDetails supplyDetails) {
+        this.supplyDetails = supplyDetails;
     }
 
-    public Integer getFarmerId() {
-        return farmerId;
+    public Farmer getFarmer() {
+        return farmer;
     }
 
-    public void setFarmerId(Integer farmerId) {
-        this.farmerId = farmerId;
+    public void setFarmer(Farmer farmer) {
+        this.farmer = farmer;
     }
 
     public Float getAvailableQnt() {
@@ -87,47 +83,5 @@ public class Stock {
 
     public void setsPrice(Float sPrice) {
         this.sPrice = sPrice;
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Stock)) return false;
-
-        Stock stock = (Stock) o;
-
-        if (getStockId() != null ? !getStockId().equals(stock.getStockId()) : stock.getStockId() != null) return false;
-        if (getSupplyDetailsId() != null ? !getSupplyDetailsId().equals(stock.getSupplyDetailsId()) : stock.getSupplyDetailsId() != null)
-            return false;
-        if (getFarmerId() != null ? !getFarmerId().equals(stock.getFarmerId()) : stock.getFarmerId() != null)
-            return false;
-        if (getAvailableQnt() != null ? !getAvailableQnt().equals(stock.getAvailableQnt()) : stock.getAvailableQnt() != null)
-            return false;
-        if (getsDate() != null ? !getsDate().equals(stock.getsDate()) : stock.getsDate() != null) return false;
-        if (getsPrice() != null ? !getsPrice().equals(stock.getsPrice()) : stock.getsPrice() != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getStockId() != null ? getStockId().hashCode() : 0;
-        result = 31 * result + (getSupplyDetailsId() != null ? getSupplyDetailsId().hashCode() : 0);
-        result = 31 * result + (getFarmerId() != null ? getFarmerId().hashCode() : 0);
-        result = 31 * result + (getAvailableQnt() != null ? getAvailableQnt().hashCode() : 0);
-        result = 31 * result + (getsDate() != null ? getsDate().hashCode() : 0);
-        result = 31 * result + (getsPrice() != null ? getsPrice().hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Stock{" +
-                "stockId=" + stockId +
-                ", supplyDetailsId=" + supplyDetailsId +
-                ", farmerId=" + farmerId +
-                ", availableQnt=" + availableQnt +
-                ", sDate=" + sDate +
-                ", sPrice=" + sPrice +
-                '}';
     }
 }
