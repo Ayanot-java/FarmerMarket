@@ -1,5 +1,6 @@
 package market.dao;
 
+import market.bean.Pack;
 import market.bean.Product;
 import market.bean.Supply;
 import market.bean.SupplyDetails;
@@ -10,9 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import javax.persistence.Query;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Tane4ka on 23.01.2017.
@@ -43,9 +42,9 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
     }
 
     @Override
-    public void create(float qnt, float price, Product product, Supply supply) {
+    public void create(Float qnt, Float sprice, Product product, Supply supply, Pack pack) {
         Transaction tx = null;
-        SupplyDetails sd = new SupplyDetails(qnt, price, product, supply);
+        SupplyDetails sd = new SupplyDetails(qnt, sprice, product, supply, pack);
         try (Session session = factory.getCurrentSession()) {
             tx = session.beginTransaction();
             session.save(sd);
@@ -84,10 +83,10 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
         try(Session session = factory.getCurrentSession())
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("update SupplyDetails set qnt=:qnt, price=:price, product=:product " +
+            Query query = session.createQuery("update SupplyDetails set qnt=:qnt, sprice=:price, product=:product " +
                     "where id=:id");
             query.setParameter("qnt", supplyDetails.getQnt());
-            query.setParameter("price", supplyDetails.getPrice());
+            query.setParameter("price", supplyDetails.getSprice());
             query.setParameter("product", supplyDetails.getProduct());
             query.setParameter("id", supplyDetails.getId());
             int result = query.executeUpdate();
@@ -101,16 +100,16 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
     }
 
     @Override
-    public void update(int id, float qnt, float price) {
+    public void update(Integer id, Float qnt, Float price) {
         Transaction tx = null;
         try(Session session = factory.getCurrentSession())
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("update SupplyDetails set qnt=:qnt, price=:price where id=:id");
+            Query query = session.createQuery("update SupplyDetails set qnt=:qnt, sprice=:price where id=:id");
             query.setParameter("qnt", qnt);
             query.setParameter("price", price);
             query.setParameter("id", id);
-            int result = query.executeUpdate();
+            query.executeUpdate();
             tx.commit();
         }
         catch (HibernateException e)
@@ -121,7 +120,7 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Integer id) {
 
     }
 }

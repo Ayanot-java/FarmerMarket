@@ -11,7 +11,7 @@ public class SupplyDetails {
 
     private Integer id;
     private Float qnt;
-    private Float price;
+    private Float sprice;
     private Product product;
     private Supply supply;
     private Pack pack;
@@ -19,18 +19,18 @@ public class SupplyDetails {
     public SupplyDetails() {
     }
 
-    public SupplyDetails(Integer id, Float qnt, Float price, Product product, Supply supply, Pack pack) {
+    public SupplyDetails(Integer id, Float qnt, Float sprice, Product product, Supply supply, Pack pack) {
         this.id = id;
         this.qnt = qnt;
-        this.price = price;
+        this.sprice = sprice;
         this.product = product;
         this.supply = supply;
         this.pack = pack;
     }
 
-    public SupplyDetails(Float qnt, Float price, Product product, Supply supply, Pack pack) {
+    public SupplyDetails(Float qnt, Float sprice, Product product, Supply supply, Pack pack) {
         this.qnt = qnt;
-        this.price = price;
+        this.sprice = sprice;
         this.product = product;
         this.supply = supply;
         this.pack = pack;
@@ -56,12 +56,12 @@ public class SupplyDetails {
     }
 
     @Column(name = "sprice")
-    public Float getPrice() {
-        return price;
+    public Float getSprice() {
+        return sprice;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setSprice(Float price) {
+        this.sprice = price;
     }
 
     @ManyToOne
@@ -103,7 +103,7 @@ public class SupplyDetails {
 
         if (id != that.id) return false;
         if (Float.compare(that.qnt, qnt) != 0) return false;
-        if (Float.compare(that.price, price) != 0) return false;
+        if (Float.compare(that.sprice, sprice) != 0) return false;
         if (!product.equals(that.product)) return false;
         if (!pack.equals(that.pack)) return false;
         return supply.equals(that.supply);
@@ -113,7 +113,7 @@ public class SupplyDetails {
     public int hashCode() {
         int result = id;
         result = 31 * result + (qnt != +0.0f ? Float.floatToIntBits(qnt) : 0);
-        result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        result = 31 * result + (sprice != +0.0f ? Float.floatToIntBits(sprice) : 0);
         result = 31 * result + product.hashCode();
         result = 31 * result + supply.hashCode();
         result = 31 * result + pack.hashCode();

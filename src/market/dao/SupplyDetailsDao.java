@@ -1,12 +1,11 @@
 package market.dao;
 
-import market.bean.Farmer;
+import market.bean.Pack;
 import market.bean.Product;
 import market.bean.Supply;
 import market.bean.SupplyDetails;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Tane4ka on 23.01.2017.
@@ -14,11 +13,11 @@ import java.util.Date;
 public interface SupplyDetailsDao {
 
     public void create(SupplyDetails supplyDetails);
-    public void create(float qnt, float price, Product product, Supply supply);
+    public void create(Float qnt, Float price, Product product, Supply supply, Pack pack);
     public ArrayList<SupplyDetails> read(Supply supply);
     public void update(SupplyDetails supplyDetails);
-    public void update(int id, float qnt, float price);
-    public void delete(int id);
+    public void update(Integer id, Float qnt, Float price);
+    public void delete(Integer id);
 
 
 }
