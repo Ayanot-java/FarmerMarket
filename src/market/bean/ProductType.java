@@ -7,18 +7,17 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "producttype")
-
 public class ProductType {
-
-    @Column(name = "name")
-    private String name;
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "image")
+    @Column(name = "name")
+    private String name;
+
+    //@Column(name = "image")
     private String image;
 
     public ProductType() {
