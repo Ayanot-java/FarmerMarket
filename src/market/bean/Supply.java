@@ -13,16 +13,16 @@ public class Supply {
 
     private int id;
     private String date;
-    private int idFarmer;
+    private Farmer farmer;
     private float total;
 
     public Supply() {
     }
 
-    public Supply(int id, String date, int idFarmer) {
+    public Supply(int id, String date, Farmer farmer) {
         this.id = id;
         this.date = date;
-        this.idFarmer = idFarmer;
+        this.farmer = farmer;
     }
 
     @Id
@@ -41,17 +41,17 @@ public class Supply {
         return date;
     }
 
-    public void setDate(String  date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
     @Column(name = "farmer")
-    public int getIdFarmerFarmer() {
-        return idFarmer;
+    public Farmer getFarmer() {
+        return farmer;
     }
 
-    public void setIdFarmer(int idFarmer) {
-        this.idFarmer= idFarmer;
+    public void setFarmer(Farmer farmer) {
+        this.farmer = farmer;
     }
 
     @Column(name = "total")
@@ -71,16 +71,16 @@ public class Supply {
         Supply supply = (Supply) o;
 
         if (id != supply.id) return false;
-        if (idFarmer != supply.idFarmer) return false;
         if (Float.compare(supply.total, total) != 0) return false;
-        return date.equals(supply.date);
+        if (!date.equals(supply.date)) return false;
+        return farmer.equals(supply.farmer);
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + date.hashCode();
-        result = 31 * result + idFarmer;
+        result = 31 * result + farmer.hashCode();
         result = 31 * result + (total != +0.0f ? Float.floatToIntBits(total) : 0);
         return result;
     }
