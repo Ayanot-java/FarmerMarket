@@ -3,7 +3,6 @@ package market.bean;
 
 
 import javax.persistence.*;
-import java.sql.Date;
 
 
 /**
@@ -14,7 +13,7 @@ import java.sql.Date;
 public class Stock {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -22,20 +21,9 @@ public class Stock {
     @JoinColumn(name = "supplydetails")
     private SupplyDetails supplyDetails;
 
-    @ManyToOne
-    @JoinColumn(name = "farmer")
-    private Farmer farmer;
-
-    @Column(name = "availableqnt")
+    @Column(name = "available")
     private Float availableQnt;
 
-
-    @Column(name = "sdate")
-    private Date sDate;
-
-
-    @Column(name = ("sPrice"))
-    private Float sPrice;
 
     public Integer getId() {
         return id;
@@ -53,14 +41,6 @@ public class Stock {
         this.supplyDetails = supplyDetails;
     }
 
-    public Farmer getFarmer() {
-        return farmer;
-    }
-
-    public void setFarmer(Farmer farmer) {
-        this.farmer = farmer;
-    }
-
     public Float getAvailableQnt() {
         return availableQnt;
     }
@@ -69,19 +49,5 @@ public class Stock {
         this.availableQnt = availableQnt;
     }
 
-    public Date getsDate() {
-        return sDate;
-    }
 
-    public void setsDate(Date sDate) {
-        this.sDate = sDate;
-    }
-
-    public Float getsPrice() {
-        return sPrice;
-    }
-
-    public void setsPrice(Float sPrice) {
-        this.sPrice = sPrice;
-    }
 }
