@@ -10,20 +10,20 @@ import javax.persistence.*;
 public class Farmer {
     private int id;
     private String name;
-    private String adress;
+    private String address;
     private String phone;
-    private FarmerType type;
+    private FarmerType ftype;
 
-    public Farmer(String name, FarmerType type) {
+    public Farmer(String name, FarmerType ftype) {
         this.name = name;
-        this.type = type;
+        this.ftype = ftype;
     }
 
     public Farmer(String name) {
         this.name = name;
-        this.adress = "123";
+        this.address = "123";
         this.phone = "445";
-        this.type = null;
+        this.ftype = null;
     }
 
     public Farmer() {
@@ -52,12 +52,12 @@ public class Farmer {
 
     @Basic
     @Column(name = "adress")
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String adress) {
+        this.address = adress;
     }
 
     @Basic
@@ -72,12 +72,12 @@ public class Farmer {
 
     @ManyToOne
     @JoinColumn (name = "type")
-    public FarmerType getType() {
-        return type;
+    public FarmerType getFtype() {
+        return ftype;
     }
 
-    public void setType(FarmerType type) {
-        this.type = type;
+    public void setFtype(FarmerType type) {
+        this.ftype = type;
     }
 
     @Override
@@ -85,9 +85,9 @@ public class Farmer {
         return "Farmer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", adress='" + adress + '\'' +
+                ", adress='" + address + '\'' +
                 ", phone='" + phone + '\'' +
-                ", type=" + type +
+                ", type=" + ftype +
                 '}';
     }
 
@@ -100,9 +100,9 @@ public class Farmer {
 
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (adress != null ? !adress.equals(that.adress) : that.adress != null) return false;
+        if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        if (ftype != null ? !ftype.equals(that.ftype) : that.ftype != null) return false;
 
         return true;
     }
@@ -111,9 +111,9 @@ public class Farmer {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (adress != null ? adress.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (ftype != null ? ftype.hashCode() : 0);
         return result;
     }
 }
