@@ -31,7 +31,7 @@ public class PurchaseDaoImpl implements PurchaseDAO{
         try(Session session = sessionFactory.getCurrentSession()){ //используем try с параметром для того, чтобы сессия закрылась
                                                                   //самостоятельно после исполнения этого блока
             tx = session.beginTransaction();
-            Query query = session.createQuery("select count(*) from Purchase where buyer = :id and purchaseDate = :date");
+            Query query = session.createQuery("select count(*) from Purchase where buyer = :id and pDate = :date");
             Date now = new Date();
             /**
              * Need to do something to this Date-thing
@@ -55,17 +55,17 @@ public class PurchaseDaoImpl implements PurchaseDAO{
         }
     }
 
-    public void delete(Integer purchaseId){
+    public void delete(Integer id){
 
     }
-    public Purchase read(Integer purchaseId){
+    public Purchase read(Integer id){
         Transaction tx = null;
         Purchase purchase = null;
 
         try(Session session = sessionFactory.getCurrentSession()){
 
             tx = session.beginTransaction();
-            purchase = session.get(Purchase.class,purchaseId);
+            purchase = session.get(Purchase.class, id);
             tx.commit();
         }
         catch (HibernateException e){
@@ -100,7 +100,7 @@ public class PurchaseDaoImpl implements PurchaseDAO{
         try(Session session = sessionFactory.getCurrentSession()){
 
             tx = session.beginTransaction();
-            result = session.createQuery("from Purchase where buyer = :buyerId order by purchaseDate")
+            result = session.createQuery("from Purchase where buyer = :buyerId")
                     .setParameter("buyerId",buyer).getResultList();
             tx.commit();
         }
