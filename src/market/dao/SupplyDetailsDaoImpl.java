@@ -68,11 +68,11 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
         try(Session session = factory.getCurrentSession())
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("update SupplyDetails set qnt=:qnt, price=:price, productId=:productId " +
+            Query query = session.createQuery("update SupplyDetails set qnt=:qnt, price=:price, product=:productId " +
                     "where id=:id");
             query.setParameter("qnt", supplyDetails.getQnt());
             query.setParameter("price", supplyDetails.getPrice());
-            query.setParameter("productId", supplyDetails.getProductId());
+            query.setParameter("productId", supplyDetails.getProduct());
             query.setParameter("id", supplyDetails.getId());
             int result = query.executeUpdate();
             tx.commit();
