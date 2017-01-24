@@ -43,14 +43,30 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
     }
 
     @Override
+    public void create(float qnt, float price, Product product, Supply supply) {
+        Transaction tx = null;
+        SupplyDetails sd = new SupplyDetails(qnt, price, product, supply);
+        try (Session session = factory.getCurrentSession()) {
+            tx = session.beginTransaction();
+            session.save(sd);
+            tx.commit();
+            System.out.println("Records inserted successfully");
+
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public ArrayList<SupplyDetails> read(Supply supply) {
         Transaction tx = null;
         ArrayList<SupplyDetails> suppliesDetails = null;
         try(Session session = factory.getCurrentSession())
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from SupplyDetails where supplyId=:supplyId ");
-            query.setParameter("supplyId", supply.getId());
+            Query query = session.createQuery("from SupplyDetails where supply=:supply");
+            query.setParameter("supply", supply);
             suppliesDetails = (ArrayList<SupplyDetails>) query.getResultList();
             tx.commit();
         }
@@ -59,7 +75,7 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }
-        return null;
+        return suppliesDetails;
     }
 
     @Override
@@ -68,12 +84,32 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
         try(Session session = factory.getCurrentSession())
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("update SupplyDetails set qnt=:qnt, price=:price, product=:productId " +
+            Query query = session.createQuery("update SupplyDetails set qnt=:qnt, price=:price, product=:product " +
                     "where id=:id");
             query.setParameter("qnt", supplyDetails.getQnt());
             query.setParameter("price", supplyDetails.getPrice());
-            query.setParameter("productId", supplyDetails.getProduct());
+            query.setParameter("product", supplyDetails.getProduct());
             query.setParameter("id", supplyDetails.getId());
+            int result = query.executeUpdate();
+            tx.commit();
+        }
+        catch (HibernateException e)
+        {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update(int id, float qnt, float price) {
+        Transaction tx = null;
+        try(Session session = factory.getCurrentSession())
+        {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("update SupplyDetails set qnt=:qnt, price=:price where id=:id");
+            query.setParameter("qnt", qnt);
+            query.setParameter("price", price);
+            query.setParameter("id", id);
             int result = query.executeUpdate();
             tx.commit();
         }

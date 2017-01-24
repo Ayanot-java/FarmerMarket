@@ -57,7 +57,7 @@ public class FarmerDAOImpl implements FarmerDAO {
             if (farmer!=null) {
                 session.delete(farmer);
                 transaction.commit();
-                System.out.println("Succesesfully deleted");
+                System.out.println("Successfully deleted");
             }
             else {
                 System.out.println("Farmer with this ID is not found");

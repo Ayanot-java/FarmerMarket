@@ -14,8 +14,10 @@ import java.util.Date;
 public interface SupplyDetailsDao {
 
     public void create(SupplyDetails supplyDetails);
+    public void create(float qnt, float price, Product product, Supply supply);
     public ArrayList<SupplyDetails> read(Supply supply);
     public void update(SupplyDetails supplyDetails);
+    public void update(int id, float qnt, float price);
     public void delete(int id);
 
 

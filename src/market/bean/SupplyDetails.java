@@ -26,7 +26,14 @@ public class SupplyDetails {
         this.supply = supply;
     }
 
-    @Id @GeneratedValue
+    public SupplyDetails(float qnt, float price, Product product, Supply supply) {
+        this.qnt = qnt;
+        this.price = price;
+        this.product = product;
+        this.supply = supply;
+    }
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -54,7 +61,8 @@ public class SupplyDetails {
         this.price = price;
     }
 
-    @Column(name = "product")
+    @ManyToOne
+    @JoinColumn(name = "product")
     public Product getProduct() {
         return product;
     }
@@ -63,7 +71,8 @@ public class SupplyDetails {
         this.product = product;
     }
 
-    @Column(name = "supply")
+    @ManyToOne
+    @JoinColumn(name = "supply")
     public Supply getSupply() {
         return supply;
     }
