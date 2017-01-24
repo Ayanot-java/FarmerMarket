@@ -13,35 +13,39 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer purchaseId;
+    private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "buyer_id")
+    @JoinColumn(name = "buyer")
     private Buyer buyer;
 
-    @Column(name = "purchase_date")
-    private Date purchaseDate;
+    @Column(name = "pdate")
+    private Date pDate;
+
+    @Column(name = "total")
+    private Float total;
 
     public Purchase() {
-        this.purchaseDate = new Date();
+        this.pDate = new Date();
     }
 
     public Purchase(Buyer buyer) {
-        this.purchaseDate = new Date();
+        this.pDate = new Date();
         this.buyer = buyer;
     }
 
-    public Purchase(Buyer buyer, Date purchaseDate) {
+    public Purchase(Buyer buyer, Date pDate, Float total) {
         this.buyer = buyer;
-        this.purchaseDate = purchaseDate;
+        this.pDate = pDate;
+        this.total = total;
     }
 
-    public Integer getPurchaseId() {
-        return purchaseId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPurchaseId(Integer purchaseId) {
-        this.purchaseId = purchaseId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Buyer getBuyer() {
@@ -52,17 +56,25 @@ public class Purchase {
         this.buyer = buyer;
     }
 
-    public Date getPurchaseDate() {
-        return purchaseDate;
+    public Date getPDate() {
+        return pDate;
     }
 
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public void setPDate(Date pDate) {
+        this.pDate = pDate;
+    }
+
+    public Float getTotal() {
+        return total;
+    }
+
+    public void setTotal(Float total) {
+        this.total = total;
     }
 
     @Override
     public String toString() {
-        return purchaseDate+"\nBuyer: "+buyer.getBuyerName();
+        return "";// purchaseDate+"\nBuyer: "+buyer.getBuyerName();
     }
 
     @Override
@@ -72,16 +84,16 @@ public class Purchase {
 
         Purchase purchase = (Purchase) o;
 
-        if (!getPurchaseId().equals(purchase.getPurchaseId())) return false;
+        if (!getId().equals(purchase.getId())) return false;
         if (!getBuyer().equals(purchase.getBuyer())) return false;
-        return getPurchaseDate().equals(purchase.getPurchaseDate());
+        return getPDate().equals(purchase.getPDate());
     }
 
     @Override
     public int hashCode() {
-        int result = getPurchaseId().hashCode();
+        int result = getId().hashCode();
         result = 31 * result + getBuyer().hashCode();
-        result = 31 * result + getPurchaseDate().hashCode();
+        result = 31 * result + getPDate().hashCode();
         return result;
     }
 }

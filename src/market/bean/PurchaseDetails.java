@@ -6,49 +6,62 @@ import javax.persistence.*;
  * Created by Helen on 17.01.2017.
  */
 @Entity
-@Table(name = "purchase_details")
+@Table(name = "purchasedetails")
 public class PurchaseDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer Id;
+    private Integer id;
 
-    @Column(name = "quantity")
+    @Column(name = "qnt")
     private Double quantity;
 
-    @Column(name = "price")
+    @Column(name = "pprice")
     private Double price;
 
     @ManyToOne
-    @JoinColumn(name = "pack_id")
+    @JoinColumn(name = "pack")
     private Pack pack;
 
     @ManyToOne
-    @JoinColumn(name = "purchase_id")
+    @JoinColumn(name = "purchase")
     private Purchase purchase;
 
     @ManyToOne
-    @JoinColumn(name = "supply_id")
-    private SupplyDetails supplyDetails;
+    @JoinColumn(name = "stock")
+    private Stock stock;
 
     public PurchaseDetails() {
     }
 
-    public PurchaseDetails(Double quantity, Double price, Pack pack, Purchase purchase, SupplyDetails supplyDetails) {
+    public PurchaseDetails(Double quantity, Double price, Pack pack, Purchase purchase, Stock stock) {
         this.quantity = quantity;
         this.price = price;
         this.pack = pack;
         this.purchase = purchase;
-        this.supplyDetails = supplyDetails;
+        this.stock = stock;
+    }
+
+    public PurchaseDetails(Purchase purchase) {
+        this.purchase = purchase;
+    }
+
+    public PurchaseDetails(Stock stock) {
+        this.stock = stock;
+    }
+
+    public PurchaseDetails(Purchase purchase, Stock stock) {
+        this.purchase = purchase;
+        this.stock = stock;
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public Double getQuantity() {
@@ -83,17 +96,17 @@ public class PurchaseDetails {
         this.purchase = purchase;
     }
 
-    public SupplyDetails getSupplyDetails() {
-        return supplyDetails;
+    public Stock getStock() {
+        return stock;
     }
 
-    public void setSupplyDetails(SupplyDetails supplyDetails) {
-        this.supplyDetails = supplyDetails;
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 
     @Override
     public String toString() {
-        return purchase.toString()+"\n"+supplyDetails.getProduct().getName()+"\n"+getQuantity()+" "+pack.getName()
+        return purchase.toString()+"\n"+ stock.getSupplyDetails().getProduct().getName()+"\n"+getQuantity()+" "+pack.getName()
                 +"\nPrice: "+getPrice();
     }
 
@@ -109,7 +122,7 @@ public class PurchaseDetails {
         if (!getPrice().equals(that.getPrice())) return false;
         if (!getPack().equals(that.getPack())) return false;
         if (!getPurchase().equals(that.getPurchase())) return false;
-        return getSupplyDetails().equals(that.getSupplyDetails());
+        return getStock().equals(that.getStock());
     }
 
     @Override
@@ -119,7 +132,7 @@ public class PurchaseDetails {
         result = 31 * result + getPrice().hashCode();
         result = 31 * result + getPack().hashCode();
         result = 31 * result + getPurchase().hashCode();
-        result = 31 * result + getSupplyDetails().hashCode();
+        result = 31 * result + getStock().hashCode();
         return result;
     }
 }
