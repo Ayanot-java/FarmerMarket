@@ -13,7 +13,7 @@ public interface SupplyDao {
 
     public void create(Farmer farmer);
     public Supply read(Farmer farmer, Date saldate);
-    public ArrayList<Supply> getAllOfFarmer(Farmer farmer, Date saldate);
+    public ArrayList<Supply> getAllOfFarmer(Farmer farmer);
     public ArrayList<Supply> getAllForData(Date saldate);
     public void update(Farmer farmer, Date saldate);
     public void delete(Farmer farmer, Date saldate);
