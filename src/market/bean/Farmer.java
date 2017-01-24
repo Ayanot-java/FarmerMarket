@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "farmer", schema = "farmermarket")
 public class Farmer {
-    private int id;
+
+    private Integer id;
     private String name;
     private String address;
     private String phone;
@@ -32,11 +33,11 @@ public class Farmer {
     @Id
     @Column(name = "id")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,7 +52,7 @@ public class Farmer {
     }
 
     @Basic
-    @Column(name = "adress")
+    @Column(name = "address")
     public String getAddress() {
         return address;
     }
@@ -71,7 +72,7 @@ public class Farmer {
     }
 
     @ManyToOne
-    @JoinColumn (name = "type")
+    @JoinColumn (name = "ftype")
     public FarmerType getFtype() {
         return ftype;
     }

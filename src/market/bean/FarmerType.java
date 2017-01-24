@@ -5,14 +5,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "farmertype")
 public class FarmerType {
-	@Override
-	public String toString() {
-		return "FarmerType [id=" + id + ", name=" + name + "]";
-	}
-	public FarmerType() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
+
+	@Column(name = "name")
+	private String name;
+
+	public FarmerType() {}
+
 	public FarmerType(String name) {
 		super();
 		this.name = name;
@@ -22,19 +25,14 @@ public class FarmerType {
 		this.id = id;
 		this.name = name;
 	}
-	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
-	private String name;
-	
+
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -42,4 +40,8 @@ public class FarmerType {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "FarmerType [id=" + id + ", name=" + name + "]";
+	}
 }
