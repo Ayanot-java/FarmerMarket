@@ -1,7 +1,6 @@
 package market.dao;
 
 import market.bean.Farmer;
-import market.bean.FarmerType;
 import market.bean.Supply;
 import market.util.HibernateUtil;
 import org.hibernate.HibernateException;
@@ -10,11 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import javax.persistence.Query;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.SimpleTimeZone;
 
 /**
  * Created by Tane4ka on 18.01.2017.
@@ -37,7 +33,7 @@ public class SupplyDaoImpl implements SupplyDao {
             Supply supply = new Supply(farmer);
             session.save(supply);
             tx.commit();
-            System.out.println("Records inserted sucessessfully");
+            System.out.println("Records inserted sucessfully");
         }
         catch (HibernateException e)
         {
@@ -47,16 +43,16 @@ public class SupplyDaoImpl implements SupplyDao {
     }
 
     @Override
-    public Supply read(Farmer farmer, Date saldate) {
+    public Supply read(Farmer farmer, Date sDate) {
 
         Transaction tx = null;
         Supply s = null;
         try(Session session = factory.getCurrentSession())
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from Supply where farmer=:farmer and sDate=:sdate ");
+            Query query = session.createQuery("from Supply where farmer=:farmer and sdate=:sdate ");
             query.setParameter("farmer", farmer);
-            query.setParameter("sdate", saldate);
+            query.setParameter("sdate", sDate);
             s = (Supply) query.getSingleResult();
             tx.commit();
         }
@@ -69,7 +65,7 @@ public class SupplyDaoImpl implements SupplyDao {
     }
 
     @Override
-    public ArrayList<Supply> getAllOfFarmer(Farmer farmer) {
+    public ArrayList<Supply> getAllByFarmer(Farmer farmer) {
         Transaction tx = null;
         ArrayList<Supply> supplies = null;
         try(Session session = factory.getCurrentSession())
@@ -89,14 +85,14 @@ public class SupplyDaoImpl implements SupplyDao {
     }
 
     @Override
-    public ArrayList<Supply> getAllForData(Date saldate) {
+    public ArrayList<Supply> getAllByData(Date sDate) {
         Transaction tx = null;
         ArrayList<Supply> supplies = null;
         try(Session session = factory.getCurrentSession())
         {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from Supply where DATE(sDate)=DATE(:sdate)");
-            query.setParameter("sdate", saldate);
+            Query query = session.createQuery("from Supply where DATE(sdate)=DATE(:sdate)");
+            query.setParameter("sdate", sDate);
             supplies = (ArrayList<Supply>)query.getResultList();
             tx.commit();
         }
@@ -109,15 +105,15 @@ public class SupplyDaoImpl implements SupplyDao {
     }
 
     @Override
-    public void update(Farmer farmer, Date saldate) {
+    public void update(Farmer farmer, Date sDate) {
 //        Transaction tx = null;
 //        try(Session session = factory.getCurrentSession())
 //        {
 //            tx = session.beginTransaction();
-//            Query query = session.createQuery("update Supply  where farmer=:farmerid and date=:seldate");
-//            query.setParameter("farmerid", farmer.getId());
+//            Query query = session.createQuery("update Supply  where farmer=:farmerid and sdate=:sdate");
+//            query.setParameter("farmerid", farmer);
 //            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//            query.setParameter("seldate", dateFormat.format(saldate));
+//            query.setParameter("sdate", dateFormat.format(sDate));
 //            int result = query.executeUpdate();
 //            tx.commit();
 //        }
