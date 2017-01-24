@@ -11,27 +11,27 @@ public class User {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private int id;
+	private Integer id;
 
 	@Column(name = "username")
 	private String username;
 
-	@Column(name = "passwd")
-	private String  passwd;
+	@Column(name = "pass")
+	private String pass;
 
 	@Column(name = "utype")
-	private String type;
+	private String utype;
 
-	public User(String username, String  passwd, String type) {
+	public User(String username, String pass, String utype) {
 		super();
 		this.username = username;
-		this. passwd =  passwd;
-		this.type = type;
+		this.pass = pass;
+		this.utype = utype;
 	}
-	
-	public User(String username, String passwd){
+
+	public User(String username, String pass){
 		this.username = username;
-		this.passwd =  passwd;
+		this.pass = pass;
 	}
 
 	public User() {
@@ -48,26 +48,26 @@ public class User {
 	}
 
 	public String getPassword() {
-		return  passwd;
+		return pass;
 	}
 
 	public void setPassword(String password) {
-		this. passwd = password;
+		this.pass = password;
 	}
 
-	public String getType() {
-		return type;
+	public String getUtype() {
+		return utype;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setUtype(String type) {
+		this.utype = type;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
