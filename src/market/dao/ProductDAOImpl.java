@@ -68,7 +68,7 @@ public class ProductDAOImpl implements ProductDAO {
 
         try (Session session = factory.getCurrentSession()) {
             tx = session.beginTransaction();
-            Query query = session.createQuery("update Product set name =: name, image = :image, ptype =: ptype where id = :id");
+            Query query = session.createQuery("update Product set name =:name, image = :image, ptype =:ptype where id = :id");
             query.setParameter("name", name);
             query.setParameter("image", image);
             query.setParameter("ptype", ptype);
