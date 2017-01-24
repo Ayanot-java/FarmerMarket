@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `purchasedetails` (
   `pack` int(11) NOT NULL DEFAULT '0',
   `qnt` float NOT NULL DEFAULT '0',
   `pprice` float NOT NULL DEFAULT '0',
-  `supplydetails` int(11) NOT NULL DEFAULT '0',
+  `stock` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
