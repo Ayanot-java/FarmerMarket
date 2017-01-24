@@ -24,6 +24,9 @@ public class Stock {
     @Column(name = "available")
     private Float availableQnt;
 
+    public Stock(SupplyDetails supplyDetails) {
+        this.supplyDetails = supplyDetails;
+    }
 
     public Integer getId() {
         return id;
