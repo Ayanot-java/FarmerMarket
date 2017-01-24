@@ -10,7 +10,7 @@ public class Buyer {
     private String name;
     private String address;
     private String phone;
-    private BuyerType type;
+    private BuyerType btype;
 
     public Buyer() {
         super();
@@ -21,19 +21,19 @@ public class Buyer {
         this.name = name;
     }
 
-    public Buyer(Integer id, String name, String address, String phone, BuyerType type) {
+    public Buyer(Integer id, String name, String address, String phone, BuyerType btype) {
         super();
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.type = type;
+        this.btype = btype;
     }
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -41,7 +41,6 @@ public class Buyer {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "name")
     public String getName() {
         return name;
@@ -51,7 +50,6 @@ public class Buyer {
         this.name = name;
     }
 
-    @Basic
     @Column(name = "address")
     public String getAddress() {
         return address;
@@ -61,7 +59,6 @@ public class Buyer {
         this.address = address;
     }
 
-    @Basic
     @Column(name = "phone")
     public String getPhone() {
         return phone;
@@ -72,13 +69,13 @@ public class Buyer {
     }
 
     @ManyToOne
-    @JoinColumn(name = "type")
-    public BuyerType getType() {
-        return type;
+    @JoinColumn(name = "btype")
+    public BuyerType getBtype() {
+        return btype;
     }
 
-    public void setType(BuyerType type) {
-        this.type = type;
+    public void setBtype(BuyerType btype) {
+        this.btype = btype;
     }
 
     @Override
@@ -88,7 +85,7 @@ public class Buyer {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
-                ", type=" + type +
+                ", type=" + btype +
                 '}';
     }
 
@@ -103,7 +100,7 @@ public class Buyer {
         if (name != null ? !name.equals(buyer.name) : buyer.name != null) return false;
         if (address != null ? !address.equals(buyer.address) : buyer.address != null) return false;
         if (phone != null ? !phone.equals(buyer.phone) : buyer.phone != null) return false;
-        return type != null ? type.equals(buyer.type) : buyer.type == null;
+        return btype != null ? btype.equals(buyer.btype) : buyer.btype == null;
     }
 
     @Override
@@ -112,7 +109,7 @@ public class Buyer {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (btype != null ? btype.hashCode() : 0);
         return result;
     }
 }

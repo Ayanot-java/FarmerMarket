@@ -5,17 +5,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "buyertype")
 public class BuyerType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
+
+    @Column(name = "name")
     private String name;
 
     public BuyerType() {
         super();
     }
 
-    public BuyerType(int id, String name) {
+    public BuyerType(Integer id, String name) {
         super();
         this.id = id;
         this.name = name;
@@ -26,11 +29,11 @@ public class BuyerType {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
