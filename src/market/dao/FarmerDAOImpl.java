@@ -24,7 +24,7 @@ public class FarmerDAOImpl implements FarmerDAO {
     @Override
     public void create(String name) {
         Transaction transaction = null;
-        FarmerType type = new FarmerTypeDAOImpl().read(1);
+        FarmerType ftype = new FarmerTypeDAOImpl().read(1);
         try (Session session = factory.getCurrentSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("select count(*) from Farmer where lower(name) = :name");
@@ -34,9 +34,9 @@ public class FarmerDAOImpl implements FarmerDAO {
             if(num == 0)
             {
                 Farmer newFarmer = new Farmer(name);
-                newFarmer.setAdress("Ayanot");
+                newFarmer.setAddress("Ayanot");
                 newFarmer.setPhone("7875456");
-                newFarmer.setType(type);
+                newFarmer.setFtype(ftype);
                 session.save(newFarmer);
             }
             transaction.commit();
@@ -49,7 +49,7 @@ public class FarmerDAOImpl implements FarmerDAO {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Integer id) {
         Transaction transaction = null;
         Farmer farmer = read(id);
         try (Session session = factory.getCurrentSession()) {
@@ -66,7 +66,7 @@ public class FarmerDAOImpl implements FarmerDAO {
     }
 
     @Override
-    public void update(int id, String name) {
+    public void update(Integer id, String name) {
         Transaction transaction = null;
         Farmer farmer = read(id);
         try (Session session = factory.getCurrentSession()) {
@@ -79,7 +79,7 @@ public class FarmerDAOImpl implements FarmerDAO {
     }
 
     @Override
-    public Farmer read(int id) {
+    public Farmer read(Integer id) {
         Transaction transaction = null;
         Farmer farmer = null;
         try(Session session = factory.getCurrentSession())
@@ -99,7 +99,7 @@ public class FarmerDAOImpl implements FarmerDAO {
     }
 
     @Override
-    public Farmer find (int id) {
+    public Farmer find (Integer id) {
         return null;
     }
 
