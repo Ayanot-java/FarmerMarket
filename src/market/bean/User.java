@@ -13,13 +13,13 @@ public class User {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "userName")
+	@Column(name = "username")
 	private String username;
 
 	@Column(name = "passwd")
 	private String  passwd;
 
-	@Column(name = "type")
+	@Column(name = "utype")
 	private String type;
 
 	public User(String username, String  passwd, String type) {
@@ -34,6 +34,9 @@ public class User {
 		this.passwd =  passwd;
 	}
 
+	public User() {
+	}
+
 
 	public String getUsername() {
 		return username;
@@ -41,6 +44,7 @@ public class User {
 
 	public void setUsername(String loginName) {
 		this.username = loginName;
+
 	}
 
 	public String getPassword() {

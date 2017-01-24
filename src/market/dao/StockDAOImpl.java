@@ -1,6 +1,7 @@
 package market.dao;
 
 import market.bean.Stock;
+import market.bean.Supply;
 import market.bean.SupplyDetails;
 import market.util.HibernateUtil;
 import org.hibernate.*;
@@ -24,10 +25,20 @@ public class StockDAOImpl implements StockDAO {
 
 
     @Override
-    public void create(SupplyDetails supplyDetails) {
+    public void create(Integer id) {
         Transaction tx = null;
+        SupplyDetails newSupplyDetails = null;
+        Stock stock = null;
+        Supply newSupply = null;
         try (Session session = factory.getCurrentSession();) {
             tx = session.beginTransaction();
+            newSupplyDetails = (SupplyDetails) session.get(SupplyDetails.class, id);
+            newSupply = (Supply) session.get(Supply.class, newSupplyDetails.getSupplyId());
+            stock.setAvailableQnt(newSupplyDetails.getQnt());
+            stock.setFarmerId(newSupply.getFarmer());
+            stock.setsDate(newSupply.getDate());
+            stock.setsPrice(newSupplyDetails.getPrice());
+            session.save(stock);
 //            Query query = (Query) session.createQuery("");
             tx.commit();
         } catch (HibernateException e) {
@@ -62,8 +73,7 @@ public class StockDAOImpl implements StockDAO {
         try(Session session = factory.getCurrentSession()){
             tx = session.beginTransaction();
             Stock updatableStock = (Stock) session.load(Stock.class, id);
-            Float qnt = updatableStock.getAvailableQnt();
-            qnt = newAvailableQnt;
+            updatableStock.setAvailableQnt(newAvailableQnt);
             session.update(updatableStock);
             tx.commit();
         }catch (HibernateException e){

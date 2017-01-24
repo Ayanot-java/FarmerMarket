@@ -13,8 +13,27 @@ public class SupplyDetails {
     private float qnt;
     private float price;
     private Product product;
+    private Supply supply;
 
-    @Id @GeneratedValue
+    public SupplyDetails() {
+    }
+
+    public SupplyDetails(int id, float qnt, float price, Product product, Supply supply) {
+        this.id = id;
+        this.qnt = qnt;
+        this.price = price;
+        this.product = product;
+        this.supply = supply;
+    }
+
+    public SupplyDetails(float qnt, float price, Product product, Supply supply) {
+        this.qnt = qnt;
+        this.price = price;
+        this.product = product;
+        this.supply = supply;
+    }
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -42,13 +61,24 @@ public class SupplyDetails {
         this.price = price;
     }
 
-    @Column(name = "product")
+    @ManyToOne
+    @JoinColumn(name = "product")
     public Product getProduct() {
         return product;
     }
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "supply")
+    public Supply getSupply() {
+        return supply;
+    }
+
+    public void setSupply(Supply supply) {
+        this.supply = supply;
     }
 
     @Override
@@ -61,7 +91,8 @@ public class SupplyDetails {
         if (id != that.id) return false;
         if (Float.compare(that.qnt, qnt) != 0) return false;
         if (Float.compare(that.price, price) != 0) return false;
-        return product.equals(that.product);
+        if (!product.equals(that.product)) return false;
+        return supply.equals(that.supply);
     }
 
     @Override
@@ -70,6 +101,7 @@ public class SupplyDetails {
         result = 31 * result + (qnt != +0.0f ? Float.floatToIntBits(qnt) : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
         result = 31 * result + product.hashCode();
+        result = 31 * result + supply.hashCode();
         return result;
     }
 }
