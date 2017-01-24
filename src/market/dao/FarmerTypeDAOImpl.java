@@ -1,15 +1,14 @@
 package market.dao;
 
-import java.util.ArrayList;
-
-import javax.persistence.Query;
-
+import market.bean.FarmerType;
+import market.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import market.bean.FarmerType;
-import market.util.HibernateUtil;
+
+import javax.persistence.Query;
+import java.util.ArrayList;
 
 public class FarmerTypeDAOImpl implements FarmerTypeDAO 
 {
@@ -25,15 +24,14 @@ public class FarmerTypeDAOImpl implements FarmerTypeDAO
 	public void create(String name) 
 	{
 		Transaction tx = null;
-		try(Session session = factory.getCurrentSession())
-		{			
+		try(Session session = factory.getCurrentSession()){
+
 			tx = session.beginTransaction();  
 			Query query = session.createQuery("select count(*) from FarmerType where lower(name) = :name");
 			query.setParameter("name",name.toLowerCase());
 			Long num = (Long) query.getSingleResult();
 
-			if(num == 0)
-			{
+			if(num == 0){
 				FarmerType bt = new FarmerType(name);
 				session.save(bt);
 			}

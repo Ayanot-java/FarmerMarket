@@ -12,3 +12,4 @@ public interface BuyerTypeDAO {
     public ArrayList<BuyerType> listAll();
     public BuyerType find(Integer id);
 }
+
