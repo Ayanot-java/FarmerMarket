@@ -18,4 +18,5 @@ public interface SupplyDetailsDao {
     public void update(SupplyDetails supplyDetails);
     public void delete(int id);
 
+
 }

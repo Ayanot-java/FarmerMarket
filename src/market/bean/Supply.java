@@ -19,7 +19,7 @@ public class Supply {
     public Supply() {
     }
 
-    public Supply(int id, String date, Farmer farmer) {
+    public Supply(int id, String date, int idFarmer) {
         this.id = id;
         this.date = date;
         this.idFarmer = idFarmer;
@@ -46,11 +46,11 @@ public class Supply {
     }
 
     @Column(name = "farmer")
-    public int getFarmer() {
+    public int getIdFarmerFarmer() {
         return idFarmer;
     }
 
-    public void setFarmer(int idFarmer) {
+    public void setIdFarmer(int idFarmer) {
         this.idFarmer= idFarmer;
     }
 
