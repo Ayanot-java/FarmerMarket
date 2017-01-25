@@ -40,11 +40,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<!---//pop-up-box---->
 				<div id="small-dialog" class="mfp-hide">
 						<div class="login">
-							<h3>Log In</h3>
-							<h4>Already a Member</h4>
-							<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" />
-							<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"/>
-							<input type="submit" value="Login" />
+							<form action="/UserController" method="post">
+								<h3>Log In</h3>
+								<h4>Already a Member</h4>
+								<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" />
+								<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"/>
+								<input type="submit" value="login"/>
+							</form>
 						</div>
 					</div>
 					<div id="small-dialog1" class="mfp-hide">
