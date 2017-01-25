@@ -136,6 +136,7 @@ public class ProductDAOImpl implements ProductDAO {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public ArrayList<Product> listAll() {
         Transaction tx = null;

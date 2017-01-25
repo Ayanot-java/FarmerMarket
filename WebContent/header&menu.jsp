@@ -157,7 +157,7 @@
                             <a href="#"><i class="fa fa-fw fa-edit"></i>View and edit</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-plus"></i>New Product</a>
+                            <a href="ProductController"><i class="fa fa-fw fa-plus"></i>New Product</a>
                         </li>
                     </ul>
                 </li>

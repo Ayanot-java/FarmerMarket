@@ -18,7 +18,7 @@ public class Product {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "prtype")
+    @JoinColumn(name = "ptype")
     private ProductType ptype;
 
     //@Column(name = "image")
