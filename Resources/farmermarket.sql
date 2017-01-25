@@ -20,7 +20,7 @@ USE `farmermarket`;
 CREATE TABLE IF NOT EXISTS `buyer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `btype` int(11) NOT NULL DEFAULT '0',
+  `buyerType` int(11) NOT NULL DEFAULT '0',
   `address` varchar(500) NOT NULL DEFAULT '',
   `phone` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `buyer` (
 
 -- Dumping data for table farmermarket.buyer: ~1 rows (approximately)
 /*!40000 ALTER TABLE `buyer` DISABLE KEYS */;
-INSERT IGNORE INTO `buyer` (`id`, `name`, `btype`, `address`, `phone`) VALUES
+INSERT IGNORE INTO `buyer` (`id`, `name`, `buyerType`, `address`, `phone`) VALUES
 	(1, 'Moshe', 1, 'Israel', '');
 /*!40000 ALTER TABLE `buyer` ENABLE KEYS */;
 

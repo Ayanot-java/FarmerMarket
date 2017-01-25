@@ -1,7 +1,6 @@
 package market.dao;
 
 import market.bean.BuyerType;
-import market.bean.FarmerType;
 import market.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -84,7 +83,7 @@ public class BuyerTypeDAOImpl implements BuyerTypeDAO {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
 
     @Override
