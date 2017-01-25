@@ -14,8 +14,12 @@ import java.util.List;
  * Created by Vitaly Sokolov on 22.01.2017.
  */
 public class UserDAOImpl implements UserDAO {
-	//TODO: Implement methods
-	SessionFactory factory = HibernateUtil.getSessionFactory();
+
+	private static SessionFactory factory;
+
+	public UserDAOImpl() {
+		this.factory = HibernateUtil.getSessionFactory();
+	}
 
 	@Override
 	public void create(String username, String passwd) throws Exception {
@@ -59,7 +63,6 @@ public class UserDAOImpl implements UserDAO {
 		String hql = "from User U where U.username = :username";
 		Query<User> query = session.createQuery(hql);
 		query.setParameter("username", username);
-		Transaction tx = session.beginTransaction();
 		List<User> results = query.list();
 		session.close();
 		if (results.isEmpty()) {
@@ -76,7 +79,6 @@ public class UserDAOImpl implements UserDAO {
 		Query<User> query = session.createQuery(hql);
 		query.setParameter("username", username);
 		query.setParameter("passwd", passwd);
-		Transaction tx = session.beginTransaction();
 		List<User> results = query.list();
 		session.close();
 		if (results.isEmpty()) {
