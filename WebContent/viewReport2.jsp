@@ -16,7 +16,11 @@
 	Map row = (Map)obj;
 	StringBuilder sb = new StringBuilder();
 	Formatter formatter = new Formatter(sb, Locale.US);
-	formatter.format("%.2f", row.get("sumTotalPrice"));
+	if (row != null) {
+		formatter.format("%.2f", row.get("sumTotalPrice"));
+	} else {
+		formatter.format("%.2f", 0.0f);
+	}
 	%>
 	<tr>
 	<td>
