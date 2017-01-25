@@ -1,6 +1,7 @@
 package market.dao;
 
 import market.bean.BuyerType;
+import market.bean.FarmerType;
 import market.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -53,9 +54,11 @@ public class BuyerTypeDAOImpl implements BuyerTypeDAO {
             bt = (BuyerType) session.get(BuyerType.class, id);
             tx.commit();
         }
-        //TODO продолжать отсюда
-
-        return null;
+        catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        }
+        return bt;
     }
 
     @Override
@@ -70,6 +73,17 @@ public class BuyerTypeDAOImpl implements BuyerTypeDAO {
 
     @Override
     public ArrayList<BuyerType> listAll() {
+        Transaction tx = null;
+        ArrayList<BuyerType> list = new ArrayList<>();
+        try (Session session = factory.getCurrentSession()) {
+            tx = session.beginTransaction();
+            list = (ArrayList<BuyerType>)session.createQuery("From BuyerType").getResultList();
+            tx.commit();
+        }
+        catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        }
         return null;
     }
 
