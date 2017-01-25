@@ -1,20 +1,15 @@
 package market.dao;
 
-import java.util.ArrayList;
-
-import market.bean.FarmerType;
 import market.bean.User;
+
+import java.util.ArrayList;
 
 public interface UserDAO {
 
-	void create(String userName, String passwd) throws Exception;
-
-	User read(Integer id);
-
-	User read(String username);
-	User read(String username, String passwd);
-	void delete(Integer id) throws Exception;
-	void update(Integer id);
-	ArrayList<User> listAll();
+		public void create(User user);
+		public User read(Integer id);
+		public void delete(Integer id);
+		public void update(Integer id);
+		public ArrayList<User> listAll();
 		
 }
