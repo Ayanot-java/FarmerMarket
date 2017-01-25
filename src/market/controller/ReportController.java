@@ -46,6 +46,18 @@ public class ReportController extends HttpServlet {
 				forward = "/viewReport2.jsp";
 				break;
 			}
+			case "report3":
+			{
+				results = report.getReport3();
+				forward = "/viewReport3.jsp";
+				break;
+			}
+			case "report4":
+			{
+				results = report.getReport4();
+				forward = "/viewReport4.jsp";
+				break;
+			}
 			default:
 			{
 				results = report.getReport0();

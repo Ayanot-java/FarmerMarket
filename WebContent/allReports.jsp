@@ -12,5 +12,9 @@
 <a href = "/FarmerMarket/ReportController?report=report1">report1</a>
 <br>
 <a href = "/FarmerMarket/ReportController?report=report2">report2</a>
+<br>
+<a href = "/FarmerMarket/ReportController?report=report3">report3</a>
+<br>
+<a href = "/FarmerMarket/ReportController?report=report4">report4</a>
 </body>
 </html>
