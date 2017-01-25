@@ -1,5 +1,6 @@
 package market.dao;
 
+import market.bean.BuyerType;
 import market.bean.User;
 import market.util.HibernateUtil;
 import org.hibernate.Session;
@@ -7,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.*;
 
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,6 +119,24 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public ArrayList<User> listAll() {
-		return null;
+	Transaction tx = null;
+	ArrayList<User> list = new ArrayList<User>();
+	try (Session session = factory.getCurrentSession();)
+	{
+		tx = session.beginTransaction();
+		list = (ArrayList<User>)session.createQuery("From user").getResultList();
+		tx.commit();
+	}
+		
+	catch (HeadlessException e)
+	{
+		if (tx != null)
+		{
+			tx.rollback();
+			e.printStackTrace();
+		}
+	}
+	
+	return list;
 	}
 }
