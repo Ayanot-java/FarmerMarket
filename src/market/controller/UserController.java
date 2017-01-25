@@ -64,14 +64,13 @@ public class UserController extends HttpServlet {
 				try {
 					userDao.create(username, password);
 				} catch (Exception e) {
-					//TODO: Handle "username in use" case
 					e.printStackTrace();
 				}
 				user = userDao.read(username);
 				session.setAttribute("username", username);
-				session.setAttribute("userId", user.getId());	
-				forward = LIST_USERS;
+				session.setAttribute("userId", user.getId());
 				request.setAttribute("users", userDao.listAll());
+				forward = LIST_USERS;
 			break;
 			case ACTION_LOGIN:
 				username = request.getParameter("username");
@@ -81,7 +80,8 @@ public class UserController extends HttpServlet {
 				if(user != null)
 				{					
 					session.setAttribute("username", username);
-					session.setAttribute("userId", user.getId());					
+					session.setAttribute("userId", user.getId());
+					forward = "/profile.jsp";
 				}
 				else
 				{
@@ -89,9 +89,8 @@ public class UserController extends HttpServlet {
 				}
 				break;
 			default:
-				forward = LIST_USERS;
 				request.setAttribute("users", userDao.listAll());
-				
+				forward = LIST_USERS;
 		}
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response); 
