@@ -189,7 +189,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i>  <a href="admin.jsp"> Home</a>
+                            <i class="fa fa-home"></i>  <a href="admin.jsp"> Home</a>
                         </li>
                         <li class="active">
                             <i class="fa fa-file"></i> <%= title %>
