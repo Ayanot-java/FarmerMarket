@@ -34,8 +34,8 @@ public class FarmerDAOImpl implements FarmerDAO {
             if(num == 0)
             {
                 Farmer newFarmer = new Farmer(name);
-                newFarmer.setAddress("Ayanot");
-                newFarmer.setPhone("7875456");
+                newFarmer.setAddress("Rishon");
+                newFarmer.setPhone("235326");
                 newFarmer.setFtype(ftype);
                 session.save(newFarmer);
             }
@@ -66,12 +66,17 @@ public class FarmerDAOImpl implements FarmerDAO {
     }
 
     @Override
-    public void update(Integer id, String name) {
+    public void update(Farmer updateFarmer) {
+        Farmer farmer = read(updateFarmer.getId());
         Transaction transaction = null;
-        Farmer farmer = read(id);
         try (Session session = factory.getCurrentSession()) {
             transaction = session.beginTransaction();
-            farmer.setName(name);
+            if (updateFarmer.getName() != null && updateFarmer.getName() != farmer.getName())
+                farmer.setName(updateFarmer.getName());
+            if (updateFarmer.getPhone() != null && updateFarmer.getPhone() != farmer.getPhone())
+                farmer.setPhone(updateFarmer.getPhone());
+            if (updateFarmer.getAddress() != null && updateFarmer.getAddress() != farmer.getAddress())
+                farmer.setAddress(updateFarmer.getAddress());
             session.update(farmer);
             transaction.commit();
             System.out.println("Update complete");
@@ -87,6 +92,7 @@ public class FarmerDAOImpl implements FarmerDAO {
             transaction = session.beginTransaction();
             farmer = (Farmer) session.get(Farmer.class, id);
             transaction.commit();
+
             /*session.close();
             factory.close();*/
         }
