@@ -13,7 +13,7 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Integer purchaseId;
 
     @ManyToOne
     @JoinColumn(name = "buyer")
@@ -40,12 +40,12 @@ public class Purchase {
         this.total = total;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getPurchaseId() {
+        return purchaseId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPurchaseId(Integer id) {
+        this.purchaseId = id;
     }
 
     public Buyer getBuyer() {
@@ -84,14 +84,14 @@ public class Purchase {
 
         Purchase purchase = (Purchase) o;
 
-        if (!getId().equals(purchase.getId())) return false;
+        if (!getPurchaseId().equals(purchase.getPurchaseId())) return false;
         if (!getBuyer().equals(purchase.getBuyer())) return false;
         return getPDate().equals(purchase.getPDate());
     }
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
+        int result = getPurchaseId().hashCode();
         result = 31 * result + getBuyer().hashCode();
         result = 31 * result + getPDate().hashCode();
         return result;

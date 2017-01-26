@@ -87,7 +87,7 @@ public class PurchaseDetailsDAOImpl implements PurchaseDetailsDAO {
         }
     }
 
-    public void delete(Integer id){}
+    public void delete(Integer detailsId){}
 
     public List<PurchaseDetails> listAll(){
 

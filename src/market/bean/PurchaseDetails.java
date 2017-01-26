@@ -12,7 +12,7 @@ public class PurchaseDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Integer detailsId;
 
     @Column(name = "qnt")
     private Double quantity;
@@ -56,12 +56,12 @@ public class PurchaseDetails {
         this.stock = stock;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getDetailsId() {
+        return detailsId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setDetailsId(Integer id) {
+        this.detailsId = id;
     }
 
     public Double getQuantity() {
@@ -117,7 +117,7 @@ public class PurchaseDetails {
 
         PurchaseDetails that = (PurchaseDetails) o;
 
-        if (!getId().equals(that.getId())) return false;
+        if (!getDetailsId().equals(that.getDetailsId())) return false;
         if (!getQuantity().equals(that.getQuantity())) return false;
         if (!getPrice().equals(that.getPrice())) return false;
         if (!getPack().equals(that.getPack())) return false;
@@ -127,7 +127,7 @@ public class PurchaseDetails {
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
+        int result = getDetailsId().hashCode();
         result = 31 * result + getQuantity().hashCode();
         result = 31 * result + getPrice().hashCode();
         result = 31 * result + getPack().hashCode();

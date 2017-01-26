@@ -55,17 +55,17 @@ public class PurchaseDaoImpl implements PurchaseDAO{
         }
     }
 
-    public void delete(Integer id){
+    public void delete(Integer purchaseId){
 
     }
-    public Purchase read(Integer id){
+    public Purchase read(Integer purchaseId){
         Transaction tx = null;
         Purchase purchase = null;
 
         try(Session session = sessionFactory.getCurrentSession()){
 
             tx = session.beginTransaction();
-            purchase = session.get(Purchase.class, id);
+            purchase = session.get(Purchase.class, purchaseId);
             tx.commit();
         }
         catch (HibernateException e){
