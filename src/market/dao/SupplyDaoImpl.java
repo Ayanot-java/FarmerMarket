@@ -25,13 +25,15 @@ public class SupplyDaoImpl implements SupplyDao {
     }
 
     @Override
-    public void create(Farmer farmer) {
+    public Supply create(Farmer farmer) {
         Transaction tx = null;
+        Supply s = null;
         try(Session session = factory.getCurrentSession())
         {
             tx = session.beginTransaction();
             Supply supply = new Supply(farmer);
-            session.save(supply);
+            Integer id = (Integer) session.save(supply);
+            s = session.get(Supply.class, id);
             tx.commit();
             System.out.println("Records inserted sucessfully");
         }
@@ -40,6 +42,25 @@ public class SupplyDaoImpl implements SupplyDao {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
         }
+        return s;
+    }
+
+    @Override
+    public Supply read(Integer id) {
+        Transaction tx = null;
+        Supply s = null;
+        try(Session session = factory.getCurrentSession())
+        {
+            tx = session.beginTransaction();
+            s = session.get(Supply.class, id);
+            tx.commit();
+        }
+        catch (HibernateException e)
+        {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }
+        return s;
     }
 
     @Override
@@ -65,7 +86,7 @@ public class SupplyDaoImpl implements SupplyDao {
     }
 
     @Override
-    public ArrayList<Supply> getAllByFarmer(Farmer farmer) {
+    public ArrayList<Supply> getAllOfFarmer(Farmer farmer) {
         Transaction tx = null;
         ArrayList<Supply> supplies = null;
         try(Session session = factory.getCurrentSession())
@@ -85,7 +106,7 @@ public class SupplyDaoImpl implements SupplyDao {
     }
 
     @Override
-    public ArrayList<Supply> getAllByData(Date sDate) {
+    public ArrayList<Supply> getAllForData(Date sDate) {
         Transaction tx = null;
         ArrayList<Supply> supplies = null;
         try(Session session = factory.getCurrentSession())
