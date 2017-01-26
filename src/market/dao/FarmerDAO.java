@@ -11,7 +11,7 @@ public interface FarmerDAO {
    // public Farmer farmer;
     public void create (String name);
     public void delete (Integer id);
-    public void update(Integer id, String name);
+    public void update(Farmer farmer);
     public Farmer read (Integer id);
     public Farmer find (Integer id);
     public List<Farmer> listAll ();
