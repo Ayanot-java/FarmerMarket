@@ -16,7 +16,9 @@ public class SupplyDetails {
     private Supply supply;
     private Pack pack;
 
+
     public SupplyDetails() {
+
     }
 
     public SupplyDetails(Integer id, Float qnt, Float sprice, Product product, Supply supply, Pack pack) {
@@ -36,7 +38,9 @@ public class SupplyDetails {
         this.pack = pack;
     }
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;
