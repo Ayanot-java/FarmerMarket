@@ -18,7 +18,6 @@ local.properties
 .idea
 idea/
 pom.xml
-hibernate.cfg.xml
 
 # External tool builders
 .externalToolBuilders/
