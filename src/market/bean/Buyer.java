@@ -10,7 +10,7 @@ public class Buyer {
     private String name;
     private String address;
     private String phone;
-    private BuyerType buyerType;
+    private BuyerType btype;
 
     public Buyer() {
         super();
@@ -21,13 +21,13 @@ public class Buyer {
         this.name = name;
     }
 
-    public Buyer(Integer id, String name, String address, String phone, BuyerType buyerType) {
+    public Buyer(Integer id, String name, String address, String phone, BuyerType btype) {
         super();
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.buyerType = buyerType;
+        this.btype = btype;
     }
 
     @Id
@@ -69,13 +69,13 @@ public class Buyer {
     }
 
     @ManyToOne
-    @JoinColumn(name = "buyerType")
-    public BuyerType getBuyerType() {
-        return buyerType;
+    @JoinColumn(name = "btype")
+    public BuyerType getBtype() {
+        return btype;
     }
 
-    public void setBuyerType(BuyerType buyerType) {
-        this.buyerType = buyerType;
+    public void setBtype(BuyerType btype) {
+        this.btype = btype;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class Buyer {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
-                ", type=" + buyerType +
+                ", type=" + btype +
                 '}';
     }
 
@@ -100,7 +100,7 @@ public class Buyer {
         if (name != null ? !name.equals(buyer.name) : buyer.name != null) return false;
         if (address != null ? !address.equals(buyer.address) : buyer.address != null) return false;
         if (phone != null ? !phone.equals(buyer.phone) : buyer.phone != null) return false;
-        return buyerType != null ? buyerType.equals(buyer.buyerType) : buyer.buyerType == null;
+        return btype != null ? btype.equals(buyer.btype) : buyer.btype == null;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class Buyer {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (buyerType != null ? buyerType.hashCode() : 0);
+        result = 31 * result + (btype != null ? btype.hashCode() : 0);
         return result;
     }
 }

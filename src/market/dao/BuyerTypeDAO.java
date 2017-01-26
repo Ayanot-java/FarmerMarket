@@ -5,11 +5,11 @@ import market.bean.BuyerType;
 import java.util.ArrayList;
 
 public interface BuyerTypeDAO {
-    public void create(String name);
-    public BuyerType read(Integer id);
-    public void update(Integer id, String name);
-    public void delete(Integer id);
-    public ArrayList<BuyerType> listAll();
-    public BuyerType find(Integer id);
+    void create(BuyerType buyerType);
+    void create(String name);
+    BuyerType read(Integer id);
+    void update(Integer id, String name);
+    void delete(Integer id);
+    ArrayList<BuyerType> listAll();
+    BuyerType find(Integer id);
 }
-

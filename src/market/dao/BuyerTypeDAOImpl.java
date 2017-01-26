@@ -19,6 +19,24 @@ public class BuyerTypeDAOImpl implements BuyerTypeDAO {
         factory = HibernateUtil.getSessionFactory();
     }
 
+
+    @Override
+    public void create(BuyerType buyerType) {
+        Transaction tx = null;
+        try(Session session = factory.getCurrentSession())
+        {
+            tx = session.beginTransaction();
+            session.save(buyerType);
+            tx.commit();
+            System.out.println("Record inserted successfully");
+        }
+        catch (HibernateException e)
+        {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void create(String name) {
         Transaction tx = null;

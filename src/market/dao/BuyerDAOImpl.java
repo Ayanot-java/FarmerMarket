@@ -23,7 +23,7 @@ public class BuyerDAOImpl implements BuyerDAO {
     @Override
     public void create(String name) {
         Transaction transaction = null;
-        BuyerType buyerType = new BuyerTypeDAOImpl().read(1);
+        BuyerType btype = new BuyerTypeDAOImpl().read(1);
         try (Session session = factory.getCurrentSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("select count(*) from Buyer where lower(name) = :name ");
@@ -33,14 +33,24 @@ public class BuyerDAOImpl implements BuyerDAO {
             if (num == null) {
                 Buyer newBuyer = new Buyer(name);
                 newBuyer.setAddress("Ne dom i ne ulitsa");
-                newBuyer.setPhone("5555555");
-                newBuyer.setBuyerType(buyerType);
+                newBuyer.setPhone("2741001");
+                newBuyer.setBtype(btype);
                 session.save(newBuyer);
             }
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void create(Buyer buyer) {
+        Transaction transaction = null;
+        try (Session session = factory.getCurrentSession()) {
+            transaction = session.beginTransaction();
+            session.save(buyer);
+            transaction.commit();
         }
     }
 
@@ -68,7 +78,28 @@ public class BuyerDAOImpl implements BuyerDAO {
             buyer.setName(name);
             session.update(buyer);
             transaction.commit();
-            System.out.println("Update complit");
+            System.out.println("Update complete");
+        } catch (HibernateException e) {
+            if (transaction!=null) transaction.rollback();
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update(Buyer buyer) {
+        Transaction transaction = null;
+        try (Session session = factory.getCurrentSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("update Buyer set name=:name, address=:address, phone=:phone, btype=:btype " + "where id=:id");
+            query.setParameter("name", buyer.getName());
+            query.setParameter("address", buyer.getAddress());
+            query.setParameter("phone", buyer.getPhone());
+            query.setParameter("btype", buyer.getBtype());
+            int result = query.executeUpdate();
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction!=null) transaction.rollback();
+            e.printStackTrace();
         }
     }
 
