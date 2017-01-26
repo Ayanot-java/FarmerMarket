@@ -5,23 +5,18 @@
   Time: 10:54
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html charset=utf-8"
-         pageEncoding="UTF-8" %>
+<%--<%@ page language="java" contentType="text/html charset=utf-8"
+         pageEncoding="UTF-8" %>--%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% String title = "ListFarmers";%>
 <%@include file="header&menu.jsp" %>
-<html>
-<head>
-    <title>Index</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<body>
 <div class="container-fluid">
     <div class="col-lg-12 col-md-12 text-center">
         <ul class="pager">
-            <li class="active"><a href="/FarmerController">Фермеры</a></li>
-            <li><a href="#">Добавить фермера</a></li>
-            <li><a href="#">Изменить фермерhа</a></li>
+            <li class="active"><a href="/FarmerController">Farmers</a></li>
+            <li><a href="#">Change farmer</a></li>
         </ul>
     </div>
     <div class="panel panel-default">
@@ -51,6 +46,5 @@
         </table>
     </div>
 </div>
-</body>
-</html>
+
 <%@include file="footer.jsp" %>

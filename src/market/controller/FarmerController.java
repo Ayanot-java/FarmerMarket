@@ -35,7 +35,7 @@ public class FarmerController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("Farmers", farmerDAO.listAll());
-        RequestDispatcher view = request.getRequestDispatcher("listFarmers.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/listFarmers.jsp");
         view.forward(request, response);
     }
 }
