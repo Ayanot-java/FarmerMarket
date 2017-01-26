@@ -3,17 +3,12 @@ package market.controller;
 import market.bean.Product;
 import market.dao.ProductDAO;
 import market.dao.ProductDAOImpl;
-import market.dao.ProductTypeDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
