@@ -1,6 +1,8 @@
 package market.bean;
 
 
+import java.beans.ConstructorProperties;
+
 import javax.persistence.*;
 
 
@@ -21,6 +23,9 @@ public class User {
 
 	@Column(name = "utype")
 	private String utype;
+	
+	@Column(name = "userid")
+	private int userid;
 
 	public User(String username, String pass, String utype) {
 		super();
@@ -47,12 +52,14 @@ public class User {
 
 	}
 
-	public String getPassword() {
-		return pass;
-	}
 
-	public void setPassword(String password) {
-		this.pass = password;
+	public User(Integer id, String username, String pass, String utype, int userid) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.pass = pass;
+		this.utype = utype;
+		this.userid = userid;
 	}
 
 	public String getUtype() {
@@ -69,6 +76,22 @@ public class User {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
 }
