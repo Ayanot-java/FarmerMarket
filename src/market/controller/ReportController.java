@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import market.dao.ReportImpl;
 
-@WebServlet("/ReportController")
+@WebServlet(name = "ReportController", urlPatterns = {"/ReportController"})
 public class ReportController extends HttpServlet {
 	
 	private ReportImpl report;

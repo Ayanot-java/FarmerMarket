@@ -4,5 +4,6 @@
 <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
     <% String title = "Home";%>
     <%@include file="header&menu.jsp"%>
+
     <%@include file="footer.jsp"%>
 

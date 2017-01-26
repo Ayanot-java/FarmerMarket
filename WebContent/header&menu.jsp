@@ -157,7 +157,7 @@
                             <a href="#"><i class="fa fa-fw fa-edit"></i>View and edit</a>
                         </li>
                         <li>
-                            <a href="ProductController"><i class="fa fa-fw fa-plus"></i>New Product</a>
+                            <a href="newProduct.jsp"><i class="fa fa-fw fa-plus"></i>New Product</a>
                         </li>
                     </ul>
                 </li>
@@ -169,6 +169,9 @@
                 </li>
                 <li>
                     <a href="users.html"><i class="fa fa-fw fa-users"></i> Users</a>
+                </li>
+                <li>
+                    <a href="allReports.jsp"><i class="fa fa-fw fa-file"></i> Reports</a>
                 </li>
 
             </ul>
