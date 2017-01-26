@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Tane4ka on 23.01.2017.
  */
-public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
+public class SupplyDetailsDaoImpl implements SupplyDetailsDao {
 
     private static SessionFactory factory;
 
@@ -58,20 +58,35 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
     }
 
     @Override
+    public SupplyDetails create(Float qnt, Float price, Integer pId, Supply supply) {
+        Transaction tx = null;
+        try (Session session = factory.getCurrentSession()) {
+            Product p = session.get(Product.class, pId);
+            SupplyDetails sd = new SupplyDetails(qnt, price, p, supply, null);
+            tx = session.beginTransaction();
+            session.save(sd);
+            tx.commit();
+            System.out.println("Records inserted successfully");
+
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public ArrayList<SupplyDetails> read(Supply supply) {
         Transaction tx = null;
         ArrayList<SupplyDetails> suppliesDetails = null;
-        try(Session session = factory.getCurrentSession())
-        {
+        try (Session session = factory.getCurrentSession()) {
             tx = session.beginTransaction();
             Query query = session.createQuery("from SupplyDetails where supply=:supply");
             query.setParameter("supply", supply);
             suppliesDetails = (ArrayList<SupplyDetails>) query.getResultList();
             tx.commit();
-        }
-        catch (HibernateException e)
-        {
-            if (tx!=null) tx.rollback();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         }
         return suppliesDetails;
@@ -80,8 +95,7 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
     @Override
     public void update(SupplyDetails supplyDetails) {
         Transaction tx = null;
-        try(Session session = factory.getCurrentSession())
-        {
+        try (Session session = factory.getCurrentSession()) {
             tx = session.beginTransaction();
             Query query = session.createQuery("update SupplyDetails set qnt=:qnt, sprice=:price, product=:product " +
                     "where id=:id");
@@ -91,10 +105,8 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
             query.setParameter("id", supplyDetails.getId());
             int result = query.executeUpdate();
             tx.commit();
-        }
-        catch (HibernateException e)
-        {
-            if (tx!=null) tx.rollback();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         }
     }
@@ -102,8 +114,7 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
     @Override
     public void update(Integer id, Float qnt, Float price) {
         Transaction tx = null;
-        try(Session session = factory.getCurrentSession())
-        {
+        try (Session session = factory.getCurrentSession()) {
             tx = session.beginTransaction();
             Query query = session.createQuery("update SupplyDetails set qnt=:qnt, sprice=:price where id=:id");
             query.setParameter("qnt", qnt);
@@ -111,10 +122,8 @@ public class SupplyDetailsDaoImpl implements SupplyDetailsDao{
             query.setParameter("id", id);
             query.executeUpdate();
             tx.commit();
-        }
-        catch (HibernateException e)
-        {
-            if (tx!=null) tx.rollback();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         }
     }
