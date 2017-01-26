@@ -33,11 +33,11 @@ public class ReportImpl {
 		List results = null;
 		try(Session session = factory.getCurrentSession()) {
 			tx = session.beginTransaction();
-			//SQLQuery query = session.createNativeQuery(sql);
-			//query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-			NativeQuery query = session.createNativeQuery(sql);
-			//results = query.list();
-			results = query.getResultList();
+			SQLQuery query = session.createNativeQuery(sql);
+			query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+			//NativeQuery query = session.createNativeQuery(sql);
+			results = query.list();
+			//results = query.getResultList();
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null) tx.rollback();
